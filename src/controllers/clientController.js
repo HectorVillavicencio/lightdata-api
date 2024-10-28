@@ -13,6 +13,7 @@ const getOneClient = (req, res) => {
 const createClient = (req, res) => {
     const { body } = req;
 
+    console.log(body);
     if (
         !body.nombre ||
         !body.email ||
@@ -28,6 +29,8 @@ const createClient = (req, res) => {
         telefono: body.telefono,
         direccion: body.direccion
     };
+
+    console.log("newClient",newClient);
             
     const createdClient = clientService.createClient(newClient);
     res.status(201).send({status: "OK", data: createdClient}); 

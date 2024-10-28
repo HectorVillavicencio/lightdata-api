@@ -1,9 +1,24 @@
 const DB = require("./db.json");
+const { saveToDatabase} = require("./utils");
 
 const getAllClients = () => {
     return DB.clientes;
 };
 
+const createNewClient = (newClient) => {
+    const isAlreadyAdded =
+      DB.clientes.findIndex((client) => client.email === 
+      newClient.email) > -1;
+    
+      if (isAlreadyAdded) {
+      return;
+    }
+    DB.clientes.push(newClient);
+    saveToDatabase(DB);
+    return newClient;
+  };
+
 module.exports ={
-    getAllClients
+    getAllClients,
+    createNewClient
 };
