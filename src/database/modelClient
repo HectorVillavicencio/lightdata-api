@@ -1,5 +1,5 @@
 const DB = require("./db.json");
-const { saveToDatabase} = require("./utils");
+const { savetoDatabase} = require("./utils");
 
 const getAllClients = () => {
     return DB.clientes;
@@ -7,29 +7,63 @@ const getAllClients = () => {
 
 const createNewClient = (newClient) => {
     const isAlreadyAdded =
-      DB.clientes.findIndex((client) => client.email === 
-      newClient.email) > -1;
+      DB.clientes.findIndex((client) => client.nombre === 
+      newClient.nombre) > -1;
     
       if (isAlreadyAdded) {
       return;
     }
     DB.clientes.push(newClient);
-    saveToDatabase(DB);
+    savetoDatabase(DB);
     return newClient;
   };
 
 
-  const getOneClient =(id) => {
+  const getOneClient =(clientId) => {
     const client =
-    DB.clientes.find((c) => c.id === id);
+    DB.clientes.find((c) => c.id === clientId);
     if(!client){
         return;
     }
     return client;
   }
 
+
+  const updateOneClient = (clientId, changes) => {
+    const indexForUpdated = DB.clientes.findIndex(
+        (c) => c.id === clientId);
+
+    if (indexForUpdated === -1){
+        return null;
+    }
+
+    const updateClient = {
+        ...DB.clientes[indexForUpdated],
+        ...changes,
+    }
+
+    DB.clientes[indexForUpdated] = updateClient;
+    savetoDatabase(DB);
+    return updateClient;
+  };
+
+  const deleteOneClient = (nombre) => {
+    const indexForDeleted = BD.clientes.findIndex(
+      (c) => c.nombre === nombre
+    );
+
+    if (indexForDeleted === -1) {
+      return;
+    }
+
+    DB.clientes.splice(indexForDeleted, 1);
+    savetoDatabase(DB);
+  };
+
 module.exports ={
     getAllClients,
     createNewClient,
-    getOneClient
+    getOneClient,
+    updateOneClient,
+    deleteOneClient
 };

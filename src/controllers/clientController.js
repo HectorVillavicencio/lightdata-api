@@ -45,13 +45,32 @@ const createClient = (req, res) => {
 };
 
 const updateOneClient = (req, res) => {
-    const updatedClient = clientService.updateOneClient(req.params.clientId);
-    res.send(`Update Client ${req.params.clientId}`);
+    const{
+        body,
+        params: {clientId},
+    } = req;
+
+    if(!clientId) {
+        return res.status(400).send({ status: "FAILED", message: "No se encuentra el nombre" });
+    }
+
+    const updateClient = clientService.updateOneClient(clientId, body);
+    res.send({status: "OK", data: updateClient});
+    
 };
 
 const deleteOneClient = (req, res) => {
-    clientService.deleteOneClient(req.params.clientId);
-    res.send(`Delete Client ${req.params.clientId}`);
+    const{
+        params: {clientId},
+    } = req;
+
+    if(!clientId) {
+        return res.status(400).send({ status: "FAILED", message: "No se encuentra el nombre" });
+    }
+
+    clientService.deleteOneClient(clientId);
+    res.status(204).send({status: "OK", data: updateClient});
+   
 };
 
 module.exports = {

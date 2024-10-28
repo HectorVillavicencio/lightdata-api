@@ -1,74 +1,123 @@
 {
   "clientes": [
-      {
-          "id": "1",
-          "nombre": "Juan Perez",
-          "email": "juan.perez@example.com",
-          "telefono": "+54 9 11 1234 5678",
-          "direccion": "Calle Falsa 123, Buenos Aires, Argentina"
-      },
-      {
-          "id": "2",
-          "nombre": "Ana Lopez",
-          "email": "ana.lopez@example.com",
-          "telefono": "+54 9 11 2345 6789",
-          "direccion": "Av. Siempre Viva 742, Buenos Aires, Argentina"
-      },
-      {
-          "id": "3",
-          "nombre": "Carlos Martinez",
-          "email": "carlos.martinez@example.com",
-          "telefono": "+54 9 11 3456 7890",
-          "direccion": "Av. Belgrano 456, Rosario, Argentina"
-      },
-      {
-          "id": "4",
-          "nombre": "Maria Garcia",
-          "email": "maria.garcia@example.com",
-          "telefono": "+54 9 11 4567 8901",
-          "direccion": "Calle 9 de Julio 789, Mendoza, Argentina"
-      },
-      {
-          "id": "5",
-          "nombre": "Pedro Gonzalez",
-          "email": "pedro.gonzalez@example.com",
-          "telefono": "+54 9 11 5678 9012",
-          "direccion": "San Martin 1011, Cordoba, Argentina"
-      },
-      {
-          "id": "6",
-          "nombre": "Sofia Torres",
-          "email": "sofia.torres@example.com",
-          "telefono": "+54 9 11 6789 0123",
-          "direccion": "Mitre 1234, La Plata, Argentina"
-      },
-      {
-          "id": "7",
-          "nombre": "Diego Fernandez",
-          "email": "diego.fernandez@example.com",
-          "telefono": "+54 9 11 7890 1234",
-          "direccion": "Corrientes 5678, Salta, Argentina"
-      },
-      {
-          "id": "8",
-          "nombre": "Lucia Ramirez",
-          "email": "lucia.ramirez@example.com",
-          "telefono": "+54 9 11 8901 2345",
-          "direccion": "San Juan 9012, San Juan, Argentina"
-      },
-      {
-          "id": "9",
-          "nombre": "Miguel Rios",
-          "email": "miguel.rios@example.com",
-          "telefono": "+54 9 11 9012 3456",
-          "direccion": "Rivadavia 7890, Santa Fe, Argentina"
-      },
-      {
-          "id": "10",
-          "nombre": "Valeria Alvarez",
-          "email": "valeria.alvarez@example.com",
-          "telefono": "+54 9 11 0123 4567",
-          "direccion": "Alvear 6789, Bariloche, Argentina"
-      }
+    {
+      "id": "1",
+      "nombre": "juan",
+      "email": "juan.perez@example.com",
+      "telefono": "+54 9 11 1234 5678",
+      "direccion": "Calle Falsa 123, Buenos Aires, Argentina"
+    },
+    {
+      "id": "2",
+      "nombre": "Ana Lopez",
+      "email": "ana.lopez@example.com",
+      "telefono": "+54 9 11 2345 6789",
+      "direccion": "Av. Siempre Viva 742, Buenos Aires, Argentina"
+    },
+    {
+      "id": "3",
+      "nombre": "Carlos Martinez",
+      "email": "carlos.martinez@example.com",
+      "telefono": "+54 9 11 3456 7890",
+      "direccion": "Av. Belgrano 456, Rosario, Argentina"
+    },
+    {
+      "id": "4",
+      "nombre": "Maria Garcia",
+      "email": "maria.garcia@example.com",
+      "telefono": "+54 9 11 4567 8901",
+      "direccion": "Calle 9 de Julio 789, Mendoza, Argentina"
+    },
+    {
+      "id": "5",
+      "nombre": "cereza",
+      "email": "ana.gomez@example.com",
+      "telefono": "987654321",
+      "direccion": "Avenida Siempreviva 742"
+    },
+    {
+      "id": "6",
+      "nombre": "Sofia Torres",
+      "email": "sofia.torres@example.com",
+      "telefono": "+54 9 11 6789 0123",
+      "direccion": "Mitre 1234, La Plata, Argentina"
+    },
+    {
+      "id": "7",
+      "nombre": "Diego Fernandez",
+      "email": "diego.fernandez@example.com",
+      "telefono": "+54 9 11 7890 1234",
+      "direccion": "Corrientes 5678, Salta, Argentina"
+    },
+    {
+      "id": "8",
+      "nombre": "Lucia Ramirez",
+      "email": "lucia.ramirez@example.com",
+      "telefono": "+54 9 11 8901 2345",
+      "direccion": "San Juan 9012, San Juan, Argentina"
+    },
+    {
+      "id": "9",
+      "nombre": "Miguel Rios",
+      "email": "miguel.rios@example.com",
+      "telefono": "+54 9 11 9012 3456",
+      "direccion": "Rivadavia 7890, Santa Fe, Argentina"
+    },
+    {
+      "id": "10",
+      "nombre": "Valeria Alvarez",
+      "email": "valeria.alvarez@example.com",
+      "telefono": "+54 9 11 0123 4567",
+      "direccion": "Alvear 6789, Bariloche, Argentina"
+    },
+    {
+      "nombre": "juan",
+      "email": "ana.gomez@example.com",
+      "telefono": "987654321",
+      "direccion": "Avenida Siempreviva 742",
+      "id": "908eb698-1066-4f53-8322-bcacfdfdcf88"
+    },
+    {
+      "nombre": "juana",
+      "email": "ana.gomez@example.com",
+      "telefono": "987654321",
+      "direccion": "Avenida Siempreviva 742",
+      "id": "0c6170a8-752c-4e65-8b8d-f221b60dfec0"
+    },
+    {
+      "nombre": "camila",
+      "email": "ana.gomez@example.com",
+      "telefono": "987654321",
+      "direccion": "Avenida Siempreviva 742",
+      "id": "04841545-6aac-457e-a8d2-9434f2d3f075"
+    },
+    {
+      "nombre": "camila",
+      "email": "ana.gomez@example.com",
+      "telefono": "987654321",
+      "direccion": "Avenida Siempreviva 742",
+      "id": "08b64858-83b4-47cb-aaa6-f5743f0889fe"
+    },
+    {
+      "nombre": "mila",
+      "email": "ana.gomez@example.com",
+      "telefono": "987654321",
+      "direccion": "Avenida Siempreviva 742",
+      "id": "1407f122-0a29-4d4a-9317-a0bbbe4e62a2"
+    },
+    {
+      "nombre": "cerza",
+      "email": "ana.gomez@example.com",
+      "telefono": "987654321",
+      "direccion": "Avenida Siempreviva 742",
+      "id": "e50fb606-193b-43a4-974e-827d04513eba"
+    },
+    {
+      "nombre": "cereza",
+      "email": "ana.gomez@example.com",
+      "telefono": "987654321",
+      "direccion": "Avenida Siempreviva 742",
+      "id": "5ca11408-82fa-492a-b2a1-52d133b3c0a2"
+    }
   ]
 }

@@ -14,7 +14,7 @@ const getOneClient = (clientId) => {
 const createClient = (newClient) => { 
     const clientToInsert = {
         ...newClient,
-        id: uuid()
+        id: uuid(),
     };
 
     console.log("clientToInsert",clientToInsert);
@@ -23,12 +23,13 @@ const createClient = (newClient) => {
     return createClient;
 };
 
-const updateOneClient = () => { 
-    return;
+const updateOneClient = (nombre, changes) => { 
+    const updateClient = client.updateOneClient(nombre, changes);
+    return updateClient;
 };
 
-const deleteOneClient = () => { 
-    return;
+const deleteOneClient = (nombre) => { 
+    client.deleteOneClient(nombre);
 };
 
 module.exports = {
