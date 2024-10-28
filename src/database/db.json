@@ -1,0 +1,74 @@
+{
+    "clientes": [
+      {
+        "id": "1",
+        "Nombre": "Juan Pérez",
+        "Email": "juan.perez@example.com",
+        "Teléfono": "+54 9 11 1234 5678",
+        "Dirección": "Calle Falsa 123, Buenos Aires, Argentina"
+      },
+      {
+        "id": "2",
+        "Nombre": "Ana López",
+        "Email": "ana.lopez@example.com",
+        "Teléfono": "+54 9 11 2345 6789",
+        "Dirección": "Av. Siempre Viva 742, Buenos Aires, Argentina"
+      },
+      {
+        "id": "3",
+        "Nombre": "Carlos Martínez",
+        "Email": "carlos.martinez@example.com",
+        "Teléfono": "+54 9 11 3456 7890",
+        "Dirección": "Av. Belgrano 456, Rosario, Argentina"
+      },
+      {
+        "id": "4",
+        "Nombre": "María García",
+        "Email": "maria.garcia@example.com",
+        "Teléfono": "+54 9 11 4567 8901",
+        "Dirección": "Calle 9 de Julio 789, Mendoza, Argentina"
+      },
+      {
+        "id": "5",
+        "Nombre": "Pedro González",
+        "Email": "pedro.gonzalez@example.com",
+        "Teléfono": "+54 9 11 5678 9012",
+        "Dirección": "San Martín 1011, Córdoba, Argentina"
+      },
+      {
+        "id": "6",
+        "Nombre": "Sofía Torres",
+        "Email": "sofia.torres@example.com",
+        "Teléfono": "+54 9 11 6789 0123",
+        "Dirección": "Mitre 1234, La Plata, Argentina"
+      },
+      {
+        "id": "7",
+        "Nombre": "Diego Fernández",
+        "Email": "diego.fernandez@example.com",
+        "Teléfono": "+54 9 11 7890 1234",
+        "Dirección": "Corrientes 5678, Salta, Argentina"
+      },
+      {
+        "id": "8",
+        "Nombre": "Lucía Ramírez",
+        "Email": "lucia.ramirez@example.com",
+        "Teléfono": "+54 9 11 8901 2345",
+        "Dirección": "San Juan 9012, San Juan, Argentina"
+      },
+      {
+        "id": "9",
+        "Nombre": "Miguel Ríos",
+        "Email": "miguel.rios@example.com",
+        "Teléfono": "+54 9 11 9012 3456",
+        "Dirección": "Rivadavia 7890, Santa Fe, Argentina"
+      },
+      {
+        "id": "10",
+        "Nombre": "Valeria Álvarez",
+        "Email": "valeria.alvarez@example.com",
+        "Teléfono": "+54 9 11 0123 4567",
+        "Dirección": "Alvear 6789, Bariloche, Argentina"
+      }
+    ]
+  }

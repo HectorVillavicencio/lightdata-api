@@ -1,0 +1,9 @@
+const DB = require("./db.json");
+
+const getAllClients = () => {
+    return DB.clientes;
+};
+
+module.exports ={
+    getAllClients
+};
