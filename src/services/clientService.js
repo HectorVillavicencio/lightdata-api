@@ -6,8 +6,9 @@ const getAllClients = () => {
     return allClients;
 };
 
-const getOneClient = () => { 
-    return; 
+const getOneClient = (clientId) => { 
+     const c = client.getOneClient(clientId);
+     return c;
 };
 
 const createClient = (newClient) => { 

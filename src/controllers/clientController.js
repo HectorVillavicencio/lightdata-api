@@ -6,8 +6,16 @@ const getAllClients = (req, res) => {
 };
 
 const getOneClient = (req, res) => {
-    const oneClient = clientService.getOneClient(req.params.clientId);
-    res.send(`Get Client ${req.params.clientId}`);
+    const{
+        params: {clientId},
+    } = req;
+
+    if(!clientId){
+        return;
+    }
+
+    const client = clientService.getOneClient(clientId);
+    res.send({status: "OK", data: client});
 };
 
 const createClient = (req, res) => {

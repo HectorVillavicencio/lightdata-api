@@ -18,7 +18,18 @@ const createNewClient = (newClient) => {
     return newClient;
   };
 
+
+  const getOneClient =(id) => {
+    const client =
+    DB.clientes.find((c) => c.id === id);
+    if(!client){
+        return;
+    }
+    return client;
+  }
+
 module.exports ={
     getAllClients,
-    createNewClient
+    createNewClient,
+    getOneClient
 };
