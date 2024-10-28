@@ -64,12 +64,12 @@ const deleteOneClient = (req, res) => {
         params: {clientId},
     } = req;
 
-    if(!clientId) {
-        return res.status(400).send({ status: "FAILED", message: "No se encuentra el nombre" });
+    if (!clientId) {
+        return res.status(400).send({ status: "FAILED", message: "No se encuentra el cliente" });
     }
 
     clientService.deleteOneClient(clientId);
-    res.status(204).send({status: "OK", data: updateClient});
+    res.status(204).send({status: "OK"});
    
 };
 

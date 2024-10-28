@@ -1,5 +1,5 @@
 const DB = require("./db.json");
-const { savetoDatabase} = require("./utils");
+const { saveToDatabase} = require("./utils");
 
 const getAllClients = () => {
     return DB.clientes;
@@ -14,7 +14,7 @@ const createNewClient = (newClient) => {
       return;
     }
     DB.clientes.push(newClient);
-    savetoDatabase(DB);
+    saveToDatabase(DB);
     return newClient;
   };
 
@@ -43,13 +43,13 @@ const createNewClient = (newClient) => {
     }
 
     DB.clientes[indexForUpdated] = updateClient;
-    savetoDatabase(DB);
+    saveToDatabase(DB);
     return updateClient;
   };
 
-  const deleteOneClient = (nombre) => {
-    const indexForDeleted = BD.clientes.findIndex(
-      (c) => c.nombre === nombre
+  const deleteOneClient = (clientId) => {
+    const indexForDeleted = DB.clientes.findIndex(
+      (client) => client.id === clientId
     );
 
     if (indexForDeleted === -1) {
@@ -57,7 +57,7 @@ const createNewClient = (newClient) => {
     }
 
     DB.clientes.splice(indexForDeleted, 1);
-    savetoDatabase(DB);
+    saveToDatabase(DB);
   };
 
 module.exports ={

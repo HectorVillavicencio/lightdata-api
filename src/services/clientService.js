@@ -28,8 +28,8 @@ const updateOneClient = (nombre, changes) => {
     return updateClient;
 };
 
-const deleteOneClient = (nombre) => { 
-    client.deleteOneClient(nombre);
+const deleteOneClient = (clientId) => { 
+    client.deleteOneClient(clientId);
 };
 
 module.exports = {
@@ -37,5 +37,5 @@ module.exports = {
     getOneClient,
     createClient,
     updateOneClient,
-    deleteOneClient
+    deleteOneClient,
 };

@@ -22,13 +22,6 @@
       "direccion": "Av. Belgrano 456, Rosario, Argentina"
     },
     {
-      "id": "4",
-      "nombre": "Maria Garcia",
-      "email": "maria.garcia@example.com",
-      "telefono": "+54 9 11 4567 8901",
-      "direccion": "Calle 9 de Julio 789, Mendoza, Argentina"
-    },
-    {
       "id": "5",
       "nombre": "cereza",
       "email": "ana.gomez@example.com",
