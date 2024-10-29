@@ -1,22 +1,28 @@
+// Importa la base de datos en formato JSON y una función para guardar cambios en ella
 const DB = require("./db.json");
 const { saveToDatabase} = require("./utils");
 
+// Función para obtener todos los clientes de la base de datos
 const getAllClients = () => {
     return DB.clientes;
 };
 
+// Función para crear un nuevo cliente en la base de datos
 const createNewClient = (newClient) => {
+    // Verifica si ya existe un cliente con el mismo nombre
     const isAlreadyAdded =
       DB.clientes.findIndex((client) => client.nombre === 
       newClient.nombre) > -1;
     
-      if (isAlreadyAdded) {
+    if (isAlreadyAdded) {
+      // Tira un error si el cliente ya existe
       throw{
         status: 400,
         message: 'ya existe un cliente con ese nombre'
       };
     }
     try{
+      // Agrega el nuevo cliente al array de clientes y guarda la base de datos
       DB.clientes.push(newClient);
      saveToDatabase(DB);
       return newClient;
@@ -26,11 +32,14 @@ const createNewClient = (newClient) => {
 };
 
 
+// Función para obtener un cliente específico por su ID
 const getOneClient =(clientId) => {
   try{
+     // Busca el cliente por ID
     const client =
     DB.clientes.find((c) => c.id === clientId);
     if(!client){
+      // Lanza un error si el cliente no se encuentra
       throw {
         status: 400,
         message: "Cliente no encontrado",
@@ -42,7 +51,7 @@ const getOneClient =(clientId) => {
   }
 };
 
-
+// Función para actualizar un cliente específico
 const updateOneClient = (clientId, changes) => {
     const indexForUpdated = DB.clientes.findIndex(
         (c) => c.id === clientId);
@@ -54,18 +63,22 @@ const updateOneClient = (clientId, changes) => {
       };
     }
 
+    // Crea un nuevo objeto de cliente con los cambios aplicados
     const updateClient = {
         ...DB.clientes[indexForUpdated],
         ...changes,
     }
 
+    // Actualiza el cliente en la base de datos y guarda los cambios
     DB.clientes[indexForUpdated] = updateClient;
     saveToDatabase(DB);
     return updateClient;
   };
 
+  // Función para eliminar un cliente por su ID
   const deleteOneClient = (clientId) => {
     try{
+      // Encuentra el índice del cliente en el array
       const indexForDeleted = DB.clientes.findIndex(
         (client) => client.id === clientId
      );
@@ -77,13 +90,15 @@ const updateOneClient = (clientId, changes) => {
         };
       }
 
-      DB.clientes.splice(indexForDeleted, 1);
+     // Elimina el cliente del array y guarda la base de datos
+     DB.clientes.splice(indexForDeleted, 1);
      saveToDatabase(DB);
     } catch (error) {
       throw { status: error?.status || 500, message: error?.message || error };
     }
   };
 
+// Exporta las funciones para ser utilizadas en el service
 module.exports ={
     getAllClients,
     createNewClient,
