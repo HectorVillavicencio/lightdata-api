@@ -1,0 +1,106 @@
+// Importa la base de datos en formato JSON y una función para guardar cambios en ella
+const DB = require("./db.json");
+const { saveToDatabase } = require("./utils");
+
+// Función para obtener todos los items de la base de datos
+const getAllItems = () => {
+    return DB.items;
+};
+
+// Función para crear un nuevo item en la base de datos
+const createNewItem = (newItem) => {
+    // Verifica si ya existe un item con el mismo código
+    const isAlreadyAdded =
+        DB.items.findIndex((item) => item.Código === newItem.Código) > -1;
+    
+    if (isAlreadyAdded) {
+        // Lanza un error si el item ya existe
+        throw {
+            status: 400,
+            message: 'ya existe un item con ese código'
+        };
+    }
+    try {
+        // Agrega el nuevo item al array de items y guarda la base de datos
+        DB.items.push(newItem);
+        saveToDatabase(DB);
+        return newItem;
+    } catch (error) {
+        throw { status: 500, message: error?.message || error };
+    }
+};
+
+// Función para obtener un item específico por su ID
+const getOneItem = (itemId) => {
+    try {
+        // Busca el item por ID
+        const item = DB.items.find((i) => i.id === itemId);
+        if (!item) {
+            // Lanza un error si el item no se encuentra
+            throw {
+                status: 400,
+                message: "Item no encontrado",
+            };
+        }
+        return item;
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || error };
+    }
+};
+
+// Función para actualizar un item específico
+const updateOneItem = (itemId, changes) => {
+    const indexForUpdated = DB.items.findIndex(
+        (i) => i.id === itemId
+    );
+
+    if (indexForUpdated === -1) {
+        throw {
+            status: 404,
+            message: 'no existe el item'
+        };
+    }
+
+    // Crea un nuevo objeto de item con los cambios aplicados
+    const updateItem = {
+        ...DB.items[indexForUpdated],
+        ...changes,
+    }
+
+    // Actualiza el item en la base de datos y guarda los cambios
+    DB.items[indexForUpdated] = updateItem;
+    saveToDatabase(DB);
+    return updateItem;
+};
+
+// Función para eliminar un item por su ID
+const deleteOneItem = (itemId) => {
+    try {
+        // Encuentra el índice del item en el array
+        const indexForDeleted = DB.items.findIndex(
+            (item) => item.id === itemId
+        );
+
+        if (indexForDeleted === -1) {
+            throw {
+                status: 404,
+                message: `El item no existe`,
+            };
+        }
+
+        // Elimina el item del array y guarda la base de datos
+        DB.items.splice(indexForDeleted, 1);
+        saveToDatabase(DB);
+    } catch (error) {
+        throw { status: error?.status || 500, message: error?.message || error };
+    }
+};
+
+// Exporta las funciones para ser utilizadas en el service
+module.exports = {
+    getAllItems,
+    createNewItem,
+    getOneItem,
+    updateOneItem,
+    deleteOneItem
+};
