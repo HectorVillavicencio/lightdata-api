@@ -48,8 +48,7 @@ const createItem = (req, res) => {
     if (
         !body.Código ||
         !body.Descripción ||
-        !body.Precio ||
-        typeof body.habilitado !== "boolean" ||
+        typeof body.Precio !== "number" ||
         typeof body.Stock !== "number"
     ) {
         res.status(400).send({
@@ -64,7 +63,6 @@ const createItem = (req, res) => {
         Código: body.Código,
         Descripción: body.Descripción,
         Precio: body.Precio,
-        habilitado: body.habilitado,
         Stock: body.Stock
     };
 

@@ -1,7 +1,8 @@
 // Importa Express y el enrutador de clientes
 const express = require ('express');
 const clientRouter= require("./routes/clientRoutes");
-
+const itemRouter = require("./routes/itemRoutes")
+const itemorder = require("./routes/itemOrder")
 
 const app = express(); // Crea la aplicación Express
 
@@ -12,6 +13,12 @@ app.use(express.json());
 
 // Ruta base para todas las rutas de cliente
 app.use("/api/clients", clientRouter);
+
+// Ruta base para todas las rutas de item
+app.use("/api/items", itemRouter);
+
+// Ruta base para todas las rutas de pedido
+app.use("/api/order", itemorder);
 
 
 // Inicia el servidor y escucha en el puerto especificado

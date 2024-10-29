@@ -24,6 +24,7 @@ const createItem = (newItem) => {
     const itemToInsert = {
         ...newItem,
         id: uuid(),
+        habilitado: true
     };
 
     console.log("itemToInsert", itemToInsert);
