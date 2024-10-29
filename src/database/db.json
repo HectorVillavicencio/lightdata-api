@@ -1,13 +1,6 @@
 {
   "clientes": [
     {
-      "id": "1",
-      "nombre": "juan",
-      "email": "juan.perez@example.com",
-      "telefono": "+54 9 11 1234 5678",
-      "direccion": "Calle Falsa 123, Buenos Aires, Argentina"
-    },
-    {
       "id": "2",
       "nombre": "Ana Lopez",
       "email": "ana.lopez@example.com",
@@ -41,13 +34,6 @@
       "email": "diego.fernandez@example.com",
       "telefono": "+54 9 11 7890 1234",
       "direccion": "Corrientes 5678, Salta, Argentina"
-    },
-    {
-      "id": "8",
-      "nombre": "Lucia Ramirez",
-      "email": "lucia.ramirez@example.com",
-      "telefono": "+54 9 11 8901 2345",
-      "direccion": "San Juan 9012, San Juan, Argentina"
     },
     {
       "id": "9",
@@ -111,6 +97,10 @@
       "telefono": "987654321",
       "direccion": "Avenida Siempreviva 742",
       "id": "5ca11408-82fa-492a-b2a1-52d133b3c0a2"
+    },
+    {
+      "nombre": "villa",
+      "id": "68f80ec5-c39d-4601-8a59-9431aafb75c2"
     }
   ]
 }

@@ -11,30 +11,47 @@ const createNewClient = (newClient) => {
       newClient.nombre) > -1;
     
       if (isAlreadyAdded) {
-      return;
+      throw{
+        status: 400,
+        message: 'ya existe un cliente con ese nombre'
+      };
     }
-    DB.clientes.push(newClient);
-    saveToDatabase(DB);
-    return newClient;
-  };
+    try{
+      DB.clientes.push(newClient);
+     saveToDatabase(DB);
+      return newClient;
+    } catch (error){
+      throw { status: 500, message: error?.message || error}
+    }
+};
 
 
-  const getOneClient =(clientId) => {
+const getOneClient =(clientId) => {
+  try{
     const client =
     DB.clientes.find((c) => c.id === clientId);
     if(!client){
-        return;
+      throw {
+        status: 400,
+        message: "Cliente no encontrado",
+      };
     }
     return client;
+  } catch (error) {
+    throw { status: error?.status || 500, message: error?.message || error };
   }
+};
 
 
-  const updateOneClient = (clientId, changes) => {
+const updateOneClient = (clientId, changes) => {
     const indexForUpdated = DB.clientes.findIndex(
         (c) => c.id === clientId);
 
     if (indexForUpdated === -1){
-        return null;
+      throw{
+        status: 404,
+        message: 'no existe el cliente'
+      };
     }
 
     const updateClient = {
@@ -48,16 +65,23 @@ const createNewClient = (newClient) => {
   };
 
   const deleteOneClient = (clientId) => {
-    const indexForDeleted = DB.clientes.findIndex(
-      (client) => client.id === clientId
-    );
+    try{
+      const indexForDeleted = DB.clientes.findIndex(
+        (client) => client.id === clientId
+     );
 
-    if (indexForDeleted === -1) {
-      return;
+     if (indexForDeleted === -1) {
+       throw {
+         status: 404,
+          message: `El cliente no existe`,
+        };
+      }
+
+      DB.clientes.splice(indexForDeleted, 1);
+     saveToDatabase(DB);
+    } catch (error) {
+      throw { status: error?.status || 500, message: error?.message || error };
     }
-
-    DB.clientes.splice(indexForDeleted, 1);
-    saveToDatabase(DB);
   };
 
 module.exports ={

@@ -1,8 +1,14 @@
 const clientService = require("../services/clientService.js");
 
 const getAllClients = (req, res) => {
-    const allClients = clientService.getAllClients(); 
-    res.send({status: 'OK', data: allClients});
+    try{
+        const allClients = clientService.getAllClients(); 
+        res.send({status: 'OK', data: allClients});
+    } catch (error) {
+        res
+         .status(error?.status || 500)
+         .send({status: "FAILED", data: {error: error?.message || error}});
+        };
 };
 
 const getOneClient = (req, res) => {
@@ -11,11 +17,20 @@ const getOneClient = (req, res) => {
     } = req;
 
     if(!clientId){
-        return;
+        res.status(400).send({
+            status: "FAILED",
+            data: { error: "cliente no encontrado" },
+          });
+          return;
     }
-
-    const client = clientService.getOneClient(clientId);
-    res.send({status: "OK", data: client});
+    try{
+        const client = clientService.getOneClient(clientId);
+         res.send({status: "OK", data: client});
+    } catch (error) {
+        res
+          .status(error?.status || 500)
+          .send({ status: "FAILED", data: { error: error?.message || error } });
+      }
 };
 
 const createClient = (req, res) => {
@@ -28,7 +43,8 @@ const createClient = (req, res) => {
         !body.telefono ||
         !body.direccion
     ) {
-        return res.status(400).send({ status: "FAILED", message: "Missing fields" });
+        res.status(400).send({ status: "FAILED", data: {error: 
+            "Algun atributo falta o ya existe un cliente con ese nombre"} });
     }
     
     const newClient = {
@@ -39,9 +55,14 @@ const createClient = (req, res) => {
     };
 
     console.log("newClient",newClient);
-            
-    const createdClient = clientService.createClient(newClient);
-    res.status(201).send({status: "OK", data: createdClient}); 
+    try{    
+        const createdClient = clientService.createClient(newClient);
+        res.status(201).send({status: "OK", data: createdClient}); 
+    } catch (error) {
+        res
+         .status(error?.status || 500)
+         .send({status: "FAILED", data: {error: error?.message || error}});
+    }
 };
 
 const updateOneClient = (req, res) => {
@@ -51,12 +72,16 @@ const updateOneClient = (req, res) => {
     } = req;
 
     if(!clientId) {
-        return res.status(400).send({ status: "FAILED", message: "No se encuentra el nombre" });
+        return;
     }
-
-    const updateClient = clientService.updateOneClient(clientId, body);
-    res.send({status: "OK", data: updateClient});
-    
+    try{
+     const updateClient = clientService.updateOneClient(clientId, body);
+     res.send({status: "OK", data: updateClient});
+    }   catch (error) {
+        res
+         .status(error?.status || 500)
+         .send({status: "FAILED", data: {error: error?.message || error}});
+    }
 };
 
 const deleteOneClient = (req, res) => {
@@ -65,12 +90,19 @@ const deleteOneClient = (req, res) => {
     } = req;
 
     if (!clientId) {
-        return res.status(400).send({ status: "FAILED", message: "No se encuentra el cliente" });
+        return res.status(400).send({
+            status: "FAILED",
+            data: {error: "cliente no encontrado"}
+        });
     }
-
-    clientService.deleteOneClient(clientId);
-    res.status(204).send({status: "OK"});
-   
+    try {
+        clientService.deleteOneClient(clientId);
+        res.status(204).send({status: "OK"});
+    } catch (error) {
+        res
+          .status(error?.status || 500)
+          .send({ status: "FAILED", data: { error: error?.message || error } });
+      }
 };
 
 module.exports = {
