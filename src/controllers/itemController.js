@@ -46,10 +46,10 @@ const createItem = (req, res) => {
 
     // Valida que todos los atributos requeridos estén en la solicitud
     if (
-        !body.Código ||
-        !body.Descripción ||
-        typeof body.Precio !== "number" ||
-        typeof body.Stock !== "number"
+        !body.codigo ||
+        !body.descripción ||
+        typeof body.precio !== "number" ||
+        typeof body.stock !== "number"
     ) {
         res.status(400).send({
             status: "FAILED",
@@ -60,10 +60,10 @@ const createItem = (req, res) => {
 
     // Crea un nuevo objeto item con los datos de la solicitud
     const newItem = {
-        Código: body.Código,
-        Descripción: body.Descripción,
-        Precio: body.Precio,
-        Stock: body.Stock
+        codigo: body.codigo,
+        descripción: body.descripción,
+        precio: body.precio,
+        stock: body.stock
     };
 
     console.log("newItem", newItem);

@@ -1,4 +1,6 @@
 // Importa el modelo de pedido, que contiene las funciones de acceso a la base de datos
+const itemsList = require("../database/modelItem");
+// Importa el modelo de pedido, que contiene las funciones de acceso a la base de datos
 const order = require("../database/modelOrder");
 
 // Importa la librería uuid para generar identificadores únicos
@@ -20,10 +22,32 @@ const getOneOrder = (orderId) => {
 
 // Servicio para crear un nuevo pedido
 const createOrder = (newOrder) => { 
+    // Verifica la existencia de items y el stock
+    for (const item of newOrder.items) {
+        const stockItem = itemsList.getAllItems().find(i => i.id === item.id); // Busca el item en la base de datos
+        
+        if (!stockItem) {
+            throw {
+                status: 404,
+                message: `El item con ID ${item.id} no existe`
+            };
+        }
+
+        // Compara la cantidad solicitada con el stock disponible
+        if (item.stock > stockItem.stock) {
+            throw {
+                status: 400,
+                message: `No se puede realizar el pedido, la cantidad excede el stock disponible`
+            };
+        }
+    }
+
     // Crea un objeto de pedido con un ID único utilizando uuid
     const orderToInsert = {
-        ...newOrder,
         id: uuid(),
+        ...newOrder,
+        createdAt: new Date().toLocaleString("en-US", { timeZone: "America/Argentina/Buenos_Aires" })
+        
     };
 
     console.log("orderToInsert", orderToInsert);
@@ -33,23 +57,10 @@ const createOrder = (newOrder) => {
     return createdOrder;
 };
 
-// Servicio para actualizar un pedido específico por su ID y aplicar cambios
-const updateOneOrder = (orderId, changes) => { 
-    const updatedOrder = order.updateOneOrder(orderId, changes);
-    return updatedOrder;
-};
-
-// Servicio para eliminar un pedido específico por su ID
-const deleteOneOrder = (orderId) => {
-    // Llama al modelo para eliminar el pedido por su ID 
-    order.deleteOneOrder(orderId);
-};
 
 // Exporta las funciones del servicio para ser utilizadas en el controlador de pedidos
 module.exports = {
     getAllOrders,
     getOneOrder,
     createOrder,
-    updateOneOrder,
-    deleteOneOrder,
 };

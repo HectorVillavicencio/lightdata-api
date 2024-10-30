@@ -10,7 +10,5 @@ router
     .get("/", orderController.getAllOrders)
     .get("/:orderId", orderController.getOneOrder)
     .post("/", orderController.createOrder)
-    .patch("/:orderId", orderController.updateOneOrder)
-    .delete("/:orderId", orderController.deleteOneOrder);
 
 module.exports = router;

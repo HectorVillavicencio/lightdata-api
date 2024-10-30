@@ -49,18 +49,19 @@ const createOrder = (req, res) => {
 
     // Valida que todos los atributos requeridos estén en la solicitud
     if (
-        !body.cliente ||
+        !body.clienteId || // Cliente ID
         !body.items || 
-        !body.cantidad
+        !Array.isArray(body.items) || // Verifica que items sea una lista
+        body.items.length === 0 || // Verifica que la lista de items no sea vacia
+        !body.items.every(item => typeof item.id === 'string' && typeof item.stock === 'number') // Verifica que cada item tenga un ID de string y el stock
     ) {
-        res.status(400).send({ status: "FAILED", data: { error: "Algún atributo falta o ya existe un pedido con ese cliente" } });
+        return res.status(400).send({ status: "FAILED", data: { error: "Algún atributo falta o tiene un formato incorrecto." } });
     }
     
     // Crea un nuevo objeto pedido con los datos de la solicitud
     const newOrder = {
-        cliente: body.cliente,
-        items: body.items,
-        cantidad: body.cantidad
+        clienteId: body.clienteId,
+        items: body.items 
     };
 
     console.log("newOrder", newOrder);
@@ -76,57 +77,9 @@ const createOrder = (req, res) => {
 };
 
 
-// Controlador para actualizar un pedido específico por su ID
-const updateOneOrder = (req, res) => {
-    const {
-        body,
-        params: { orderId },
-    } = req;
-
-    if (!orderId) {
-        return;
-    }
-    try {
-        // Llama al servicio para actualizar el pedido con los campos proporcionados
-        const updateOrder = orderService.updateOneOrder(orderId, body);
-        res.send({ status: "OK", data: updateOrder });
-    } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } });
-    }
-};
-
-
-// Controlador para eliminar un pedido específico por su ID
-const deleteOneOrder = (req, res) => {
-    const {
-        params: { orderId },
-    } = req;
-
-    if (!orderId) {
-        return res.status(400).send({
-            status: "FAILED",
-            data: { error: "pedido no encontrado" }
-        });
-    }
-    try {
-        // Llama al servicio para eliminar el pedido por su ID
-        orderService.deleteOneOrder(orderId);
-        res.status(204).send({ status: "OK" });
-    } catch (error) {
-        res
-            .status(error?.status || 500)
-            .send({ status: "FAILED", data: { error: error?.message || error } });
-    }
-};
-
-
 // Exporta las funciones del controlador para ser usadas en el router de rutas
 module.exports = {
     getAllOrders,
     getOneOrder,
     createOrder,
-    updateOneOrder,
-    deleteOneOrder
 };

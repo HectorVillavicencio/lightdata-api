@@ -11,7 +11,7 @@ const getAllItems = () => {
 const createNewItem = (newItem) => {
     // Verifica si ya existe un item con el mismo código
     const isAlreadyAdded =
-        DB.items.findIndex((item) => item.Código === newItem.Código) > -1;
+        DB.items.findIndex((item) => item.codigo === newItem.codigo) > -1;
     
     if (isAlreadyAdded) {
         // Lanza un error si el item ya existe

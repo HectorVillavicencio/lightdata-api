@@ -1,151 +1,205 @@
 {
   "clientes": [
     {
-      "id": "2",
+      "id": "1",
       "nombre": "Ana Lopez",
       "email": "ana.lopez@example.com",
       "telefono": "+54 9 11 2345 6789",
       "direccion": "Av. Siempre Viva 742, Buenos Aires, Argentina"
     },
     {
-      "id": "3",
+      "id": "2",
       "nombre": "Carlos Martinez",
       "email": "carlos.martinez@example.com",
       "telefono": "+54 9 11 3456 7890",
       "direccion": "Av. Belgrano 456, Rosario, Argentina"
-    },
-    {
-      "id": "5",
-      "nombre": "cereza",
-      "email": "ana.gomez@example.com",
-      "telefono": "987654321",
-      "direccion": "Avenida Siempreviva 742"
-    },
-    {
-      "id": "6",
-      "nombre": "Sofia Torres",
-      "email": "sofia.torres@example.com",
-      "telefono": "+54 9 11 6789 0123",
-      "direccion": "Mitre 1234, La Plata, Argentina"
-    },
-    {
-      "id": "7",
-      "nombre": "Diego Fernandez",
-      "email": "diego.fernandez@example.com",
-      "telefono": "+54 9 11 7890 1234",
-      "direccion": "Corrientes 5678, Salta, Argentina"
-    },
-    {
-      "id": "9",
-      "nombre": "pepito",
-      "email": "marano.martinez@example.com",
-      "telefono": "+54 9 11 3456 7890",
-      "direccion": "Av. Belgrano 456, Rosario, Argentina"
-    },
-    {
-      "nombre": "juan",
-      "email": "ana.gomez@example.com",
-      "telefono": "987654321",
-      "direccion": "Avenida Siempreviva 742",
-      "id": "908eb698-1066-4f53-8322-bcacfdfdcf88"
-    },
-    {
-      "nombre": "juana",
-      "email": "ana.gomez@example.com",
-      "telefono": "987654321",
-      "direccion": "Avenida Siempreviva 742",
-      "id": "0c6170a8-752c-4e65-8b8d-f221b60dfec0"
-    },
-    {
-      "nombre": "camila",
-      "email": "ana.gomez@example.com",
-      "telefono": "987654321",
-      "direccion": "Avenida Siempreviva 742",
-      "id": "04841545-6aac-457e-a8d2-9434f2d3f075"
-    },
-    {
-      "nombre": "camila",
-      "email": "ana.gomez@example.com",
-      "telefono": "987654321",
-      "direccion": "Avenida Siempreviva 742",
-      "id": "08b64858-83b4-47cb-aaa6-f5743f0889fe"
-    },
-    {
-      "nombre": "mila",
-      "email": "ana.gomez@example.com",
-      "telefono": "987654321",
-      "direccion": "Avenida Siempreviva 742",
-      "id": "1407f122-0a29-4d4a-9317-a0bbbe4e62a2"
-    },
-    {
-      "nombre": "cerza",
-      "email": "ana.gomez@example.com",
-      "telefono": "987654321",
-      "direccion": "Avenida Siempreviva 742",
-      "id": "e50fb606-193b-43a4-974e-827d04513eba"
-    },
-    {
-      "nombre": "cereza",
-      "email": "ana.gomez@example.com",
-      "telefono": "987654321",
-      "direccion": "Avenida Siempreviva 742",
-      "id": "5ca11408-82fa-492a-b2a1-52d133b3c0a2"
-    },
-    {
-      "nombre": "villa",
-      "id": "68f80ec5-c39d-4601-8a59-9431aafb75c2"
-    },
-    {
-      "nombre": "pepito",
-      "email": "carlos.martinez@example.com",
-      "telefono": "+54 9 11 3456 7890",
-      "direccion": "Av. Belgrano 456, Rosario, Argentina",
-      "id": "1e3285c7-8d10-4f92-9b3e-dbbc5e178974"
-    },
-    {
-      "nombre": "pepto",
-      "email": "marano.martinez@example.com",
-      "telefono": "+54 9 11 3456 7890",
-      "direccion": "Av. Belgrano 456, Rosario, Argentina",
-      "id": "c42c83b5-b309-4c5e-a8ff-46452e65c9e4"
     }
   ],
   "items": [
     {
-      "Código": "memesito",
-      "Descripción": "Lápiz HB",
-      "Precio": 5,
+      "codigo": "memesito",
+      "descripción": "Lápiz HB",
+      "precio": 5,
       "habilitado": true,
-      "Stock": 100,
-      "id": "f94aa5d5-6e59-4aa3-a61a-e07d85b3819c"
+      "stock": 7,
+      "id": "1"
     },
     {
-      "Código": "mesito",
-      "Descripción": "lapicito HB",
-      "Precio": 5,
+      "codigo": "mesito",
+      "descripción": "lapicito HB",
+      "precio": 5,
       "habilitado": true,
-      "Stock": 100,
-      "id": "e196a3cd-1d53-4198-8fa9-0066d8a7a91e"
+      "stock": 1,
+      "id": "2"
     },
     {
-      "Código": "pepita",
-      "Descripción": "lapicito HB",
-      "Precio": 10,
-      "Stock": 100,
-      "id": "e9198240-11aa-4f66-aac9-6b7847b4576f",
+      "codigo": "pepita",
+      "descripción": "lapicito HB",
+      "precio": 10,
+      "stock": 10,
+      "id": "3",
       "habilitado": true
     },
     {
-      "Código": "pepissta",
-      "Descripción": "lapicito HB",
-      "Precio": 10,
-      "Stock": -100,
-      "id": "9c3ddc8b-c5c0-4ef0-8823-a47d962d0fb2",
+      "codigo": "villin",
+      "descripción": "Lápiz HB",
+      "precio": 5,
+      "stock": 10,
+      "id": "6c46e173-93cb-4d8e-8f46-f9a12dc01127",
+      "habilitado": true
+    },
+    {
+      "codigo": "villin",
+      "descripción": "Lápiz HB",
+      "precio": 5,
+      "stock": 10,
+      "id": "75dfced6-7733-493b-8e26-a767d2d6e027",
+      "habilitado": true
+    },
+    {
+      "codigo": "villin",
+      "descripción": "Lápiz HB",
+      "precio": 5,
+      "stock": 10,
+      "id": "27f22cd9-eede-49bb-9a47-75af08c2b820",
       "habilitado": true
     }
   ],
   "orders": [
-
-
+    {
+      "id": "a09ad964-0f39-4e88-a733-1ab3ea3b1f18",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 10:52:27 PM"
+    },
+    {
+      "id": "5853c8e2-7331-4123-ba69-897ab653d906",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 10:52:41 PM"
+    },
+    {
+      "id": "46b10401-8cbf-41e2-ad1e-d8cc409bda0a",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 10:52:42 PM"
+    },
+    {
+      "id": "2f20b1f8-ab0d-4a89-8b2c-003a5b4ef90b",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 10:52:43 PM"
+    },
+    {
+      "id": "6b331e65-2787-4ac8-ba5e-9c492aba9b57",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 10:52:44 PM"
+    },
+    {
+      "id": "16515c16-bad2-407b-bf89-823d061797a5",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 10:56:12 PM"
+    },
+    {
+      "id": "b44f0544-8c33-45ff-9745-bffd76a73a91",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 11:03:18 PM"
+    },
+    {
+      "id": "5c307bdb-766f-4536-b9ce-037fef312759",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 11:03:33 PM"
+    },
+    {
+      "id": "133af00b-a026-4149-ae5d-4400c64f0e1a",
+      "clienteId": "1",
+      "items": [
+        {
+          "id": "1",
+          "stock": 1
+        },
+        {
+          "id": "2",
+          "stock": 3
+        }
+      ],
+      "createdAt": "10/29/2024, 11:03:34 PM"
+    }
   ]
 }

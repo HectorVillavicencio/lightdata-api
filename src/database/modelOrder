@@ -8,22 +8,50 @@ const getAllOrders = () => {
 };
 
 // Función para crear un nuevo pedido en la base de datos
-const createNewOrder = (newOrder) => {
-    // Verifica si ya existe un pedido con el mismo código
+const createNewOrder =  (newOrder) => {
+    // Verifica si ya existe un pedido con el mismo ID
     const isAlreadyAdded =
-        DB.orders.findIndex((order) => order.Código === newOrder.Código) > -1;
-    
+        DB.orders.findIndex((order) => order.id === newOrder.id) > -1;
+
     if (isAlreadyAdded) {
         // Lanza un error si el pedido ya existe
         throw {
             status: 400,
-            message: 'ya existe un pedido con ese código'
+            message: 'Ya existe un pedido con ese código'
         };
     }
+
     try {
         // Agrega el nuevo pedido al array de pedidos y guarda la base de datos
         DB.orders.push(newOrder);
         saveToDatabase(DB);
+
+        // Reduce el stock de los ítems después de crear el pedido
+        for (const item of newOrder.items) {
+            const stockItem = DB.items.find(i => i.id === item.id); // Busca el item en la base de datos
+
+            if (!stockItem) {
+                throw {
+                    status: 404,
+                    message: `El item con ID ${item.id} no existe`
+                };
+            }
+
+            // Reduce el stock del ítem
+            stockItem.stock -= item.stock;
+
+            // Opcional: Asegúrate de que no se reduzca a un valor negativo
+            if (stockItem.stock < 0) {
+                throw {
+                    status: 400,
+                    message: `No hay suficiente stock para el item con ID ${item.itemId}`
+                };
+            }
+        }
+
+        // Guarda los cambios en el stock después de actualizar
+        saveToDatabase(DB);
+        
         return newOrder;
     } catch (error) {
         throw { status: 500, message: error?.message || error };
@@ -48,59 +76,10 @@ const getOneOrder = (orderId) => {
     }
 };
 
-// Función para actualizar un pedido específico
-const updateOneOrder = (orderId, changes) => {
-    const indexForUpdated = DB.orders.findIndex(
-        (o) => o.id === orderId
-    );
-
-    if (indexForUpdated === -1) {
-        throw {
-            status: 404,
-            message: 'no existe el pedido'
-        };
-    }
-
-    // Crea un nuevo objeto de pedido con los cambios aplicados
-    const updateOrder = {
-        ...DB.orders[indexForUpdated],
-        ...changes,
-    }
-
-    // Actualiza el pedido en la base de datos y guarda los cambios
-    DB.orders[indexForUpdated] = updateOrder;
-    saveToDatabase(DB);
-    return updateOrder;
-};
-
-// Función para eliminar un pedido por su ID
-const deleteOneOrder = (orderId) => {
-    try {
-        // Encuentra el índice del pedido en el array
-        const indexForDeleted = DB.orders.findIndex(
-            (order) => order.id === orderId
-        );
-
-        if (indexForDeleted === -1) {
-            throw {
-                status: 404,
-                message: `El pedido no existe`,
-            };
-        }
-
-        // Elimina el pedido del array y guarda la base de datos
-        DB.orders.splice(indexForDeleted, 1);
-        saveToDatabase(DB);
-    } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error };
-    }
-};
 
 // Exporta las funciones para ser utilizadas en el servicio
 module.exports = {
     getAllOrders,
     createNewOrder,
     getOneOrder,
-    updateOneOrder,
-    deleteOneOrder
 };
