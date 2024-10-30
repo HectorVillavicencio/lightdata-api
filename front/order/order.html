@@ -3,153 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <title>Gestión de Pedidos</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Enlace al CSS -->
-    <script>
-        const ordersKey = 'orders';
-
-        function openModal() {
-            document.getElementById('orderModal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('orderModal').style.display = 'none';
-            clearModalFields(); // Limpiar campos al cerrar
-        }
-
-        function clearModalFields() {
-            document.getElementById('modalClientName').value = '';
-            document.getElementById('itemList').innerHTML = '';
-        }
-
-        function addItemToOrder() {
-            const itemCode = document.getElementById('itemCode').value;
-            const itemQuantity = parseInt(document.getElementById('itemQuantity').value);
-
-            if (!itemCode || isNaN(itemQuantity) || itemQuantity <= 0) {
-                alert('Por favor, completa todos los campos correctamente.');
-                return;
-            }
-
-            const itemList = document.getElementById('itemList');
-            const newItemRow = document.createElement('tr');
-            newItemRow.innerHTML = `
-                <td>${itemCode}</td>
-                <td>${itemQuantity}</td>
-            `;
-            itemList.appendChild(newItemRow);
-            document.getElementById('itemCode').value = ''; // Limpiar campo de código
-            document.getElementById('itemQuantity').value = ''; // Limpiar campo de cantidad
-        }
-
-        function createOrder() {
-            const clientName = document.getElementById('modalClientName').value;
-            const items = Array.from(document.querySelectorAll('#itemList tr')).map(row => {
-                const cells = row.querySelectorAll('td');
-                return {
-                    code: cells[0].innerText,
-                    quantity: parseInt(cells[1].innerText)
-                };
-            });
-
-            if (!clientName || items.length === 0) {
-                alert('Por favor, completa todos los campos correctamente.');
-                return;
-            }
-
-            const orders = JSON.parse(localStorage.getItem(ordersKey)) || [];
-            const newOrder = {
-                id: orders.length ? orders[orders.length - 1].id + 1 : 1,
-                clientName,
-                items,
-                date: new Date().toISOString() // Campo de fecha, se puede manejar en el backend
-            };
-
-            orders.push(newOrder);
-            localStorage.setItem(ordersKey, JSON.stringify(orders));
-            closeModal(); // Cerrar modal
-            renderOrders();
-        }
-
-        function renderOrders() {
-            const orders = JSON.parse(localStorage.getItem(ordersKey)) || [];
-            const orderList = document.getElementById('orderList');
-            orderList.innerHTML = '';
-
-            orders.forEach(order => {
-                const orderRow = document.createElement('tr');
-                orderRow.innerHTML = `
-                    <td>${order.id}</td>
-                    <td>${order.clientName}</td>
-                    <td>${order.items.map(item => `${item.code} (${item.quantity})`).join(', ')}</td>
-                    <td>${new Date(order.date).toLocaleDateString()}</td> <!-- Mostrar fecha formateada -->
-                `;
-                orderList.appendChild(orderRow);
-            });
-        }
-
-        window.onload = renderOrders;
-    </script>
 </head>
 <body>
-    <nav>
-        <button onclick="location.href='index.html'">Clientes</button>
-        <button onclick="location.href='items.html'">Ítems</button>
-        <button onclick="location.href='pedidos.html'">Pedidos</button>
-    </nav>
-    <div class="divider"></div>
-
-    <main>
-        <h1>Gestión de Pedidos</h1>
-        
-        <button class="new-order-btn" onclick="openModal()">Nuevo Pedido</button>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Cliente</th>
-                    <th>Ítems</th>
-                    <th>Fecha</th> <!-- Nueva columna para la fecha -->
-                </tr>
-            </thead>
-            <tbody id="orderList">
-                <!-- Los pedidos se mostrarán aquí -->
-            </tbody>
-        </table>
-    </main>
-
-    <!-- Modal para agregar pedido -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Agregar Nuevo Pedido</h2>
-            <div class="form-group">
-                <label for="modalClientName">Nombre del Cliente</label>
-                <input type="text" id="modalClientName" placeholder="Nombre del Cliente" required>
-            </div>
-            <div class="form-group">
-                <label for="itemCode">Código del Ítem</label>
-                <input type="text" id="itemCode" placeholder="Código" required>
-            </div>
-            <div class="form-group">
-                <label for="itemQuantity">Cantidad</label>
-                <input type="number" id="itemQuantity" placeholder="Cantidad" required>
-            </div>
-            <button class="add-item-btn" onclick="addItemToOrder()">Agregar Ítem</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody id="itemList">
-                    <!-- Los ítems se mostrarán aquí -->
-                </tbody>
-            </table>
-            <button class="create-btn" onclick="createOrder()">Crear Pedido</button>
+    <h1 class="text-center mb-4 text-3xl font-bold">Gestión de Pedidos</h1>
+    <div class="flex justify-center mb-4">
+        <div class="flex space-x-2">
+            <button id="btnCrearItem" class="bg-green-500 text-white px-4 py-2 rounded-md">Crear Ítem</button>
+            <button id="btnCrearPedido" class="bg-green-500 text-white px-4 py-2 rounded-md">Crear Pedido</button>
         </div>
     </div>
+    
+    <table id="tablaPedidos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID Cliente</th>
+                <th>Items</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Modal Crear Pedido -->
+    <div id="modalPedido" class="modal">
+        <div class="modal-content">
+            <span id="btnCloseCreateModalPedido" class="close">&times;</span>
+            <h2>Crear Pedido</h2>
+            <form id="createOrderForm">
+                <input type="text" id="clienteId" placeholder="ID Cliente" required>
+                <div id="itemsContainer">
+                    <h3>Items</h3>
+                    <div class="item">
+                        <input type="text" class="itemId" placeholder="ID Ítem" required>
+                        <input type="number" class="itemStock" placeholder="Stock" required>
+                    </div>
+                </div>
+                <button type="button" id="btnAgregarItem" class="btn">Agregar Ítem</button>
+                <button type="submit" class="btn">Crear Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

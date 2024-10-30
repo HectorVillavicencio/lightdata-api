@@ -23,7 +23,7 @@ const createClient = (newClient) => {
     // Crea un objeto de cliente con un ID único utilizando uuid
     const clientToInsert = {
         ...newClient,
-        id: uuid(),
+        id: Math.floor(Math.random() * 100000).toString()
     };
 
     console.log("clientToInsert",clientToInsert);

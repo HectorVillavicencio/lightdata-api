@@ -1,10 +1,12 @@
 // Importa Express y el enrutador de clientes
 const express = require ('express');
+const cors = require('cors');
 const clientRouter= require("./routes/clientRoutes");
 const itemRouter = require("./routes/itemRoutes")
 const itemorder = require("./routes/orderRoutes")
 
 const app = express(); // Crea la aplicación Express
+app.use(cors())
 
 const PORT = 3000; // Define el puerto en el que correrá el servidor
 

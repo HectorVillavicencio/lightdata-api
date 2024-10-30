@@ -1,61 +1,26 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #E9F5E9; /* Fondo verde claro */
-    margin: 0;
-    padding: 0;
-}
-
-nav {
-    display: flex;
-    justify-content: space-around;
-    background-color: #2E8B57; /* Verde más fuerte */
-    padding: 10px;
-}
-
-nav button {
-    background-color: #A5D6A7; /* Verde más claro */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1em;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-nav button:hover {
-    background-color: #B2E6B2; /* Cambio de color al pasar el cursor */
-}
-
-.divider {
-    height: 5px;
-    background-color: #2E8B57; /* Verde más fuerte */
-}
-
-main {
-    text-align: center;
+    background-color: #f4f4f4;
     padding: 20px;
 }
 
 h1 {
-    font-size: 2.5em; /* Título más grande */
-    color: #2E8B57; /* Verde fuerte */
+    text-align: center;
+    color: #2e7d32; /* Color verde */
 }
 
-.new-item-btn {
-    background-color: #A5D6A7; /* Verde más claro */
+.btn {
+    background-color: #2e7d32; /* Color verde */
     color: white;
+    padding: 10px 15px;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1.2em;
-    margin-bottom: 20px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin: 5px 0;
 }
 
-.new-item-btn:hover {
-    background-color: #B2E6B2; /* Cambio de color al pasar el cursor */
+.btn:hover {
+    background-color: #1b5e20; /* Color verde más oscuro */
 }
 
 table {
@@ -65,90 +30,50 @@ table {
 }
 
 th, td {
-    border: 1px solid #2E8B57; /* Borde verde */
-    padding: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
     text-align: left;
 }
 
 th {
-    background-color: #A5D6A7; /* Verde más claro */
-    color: white;
+    background-color: #c8e6c9; /* Color verde claro */
 }
 
-tr:nth-child(even) {
-    background-color: #F9FFFA; /* Color de fila alterno */
+td {
+    background-color: #ffffff; /* Color blanco */
 }
 
-tr:hover {
-    background-color: #D9EDDB; /* Color de fondo al pasar el mouse */
-}
-
-/* Estilos del modal */
 .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed; /* Mantener el modal en la pantalla */
-    z-index: 1; /* Encima de otros elementos */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    overflow: auto; /* Permitir desplazamiento si es necesario */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con opacidad */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
-    background-color: #F9FFFA; /* Fondo blanco */
-    margin: 15% auto; /* Centrar el modal */
+    background-color: #fefefe;
+    margin: 15% auto;
     padding: 20px;
-    border: 1px solid #2E8B57; /* Borde verde */
-    width: 80%; /* Ancho del modal */
-    max-width: 500px; /* Ancho máximo */
-    border-radius: 10px; /* Bordes redondeados */
+    border: 1px solid #888;
+    width: 80%;
 }
 
 .close {
-    color: #A5D6A7; /* Color de la cruz */
-    float: right; /* A la derecha */
+    color: #aaa;
+    float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black; /* Color de la cruz al pasar el cursor */
+    color: black;
     text-decoration: none;
     cursor: pointer;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #2E8B57; /* Color del texto de los labels */
-}
-
-input {
-    width: calc(100% - 20px); /* Ancho total menos margen */
-    padding: 10px;
-    border: 1px solid #2E8B57; /* Borde verde */
-    border-radius: 5px; /* Bordes redondeados */
-}
-
-.create-btn {
-    background-color: #A5D6A7; /* Verde más claro */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1em;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.create-btn:hover {
-    background-color: #B2E6B2; /* Cambio de color al pasar el cursor */
 }

@@ -3,154 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <title>Gestión de Ítems</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Enlace al CSS -->
-    <script>
-        const itemsKey = 'items';
-
-        function openModal() {
-            document.getElementById('itemModal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('itemModal').style.display = 'none';
-            clearModalFields(); // Limpiar campos al cerrar
-        }
-
-        function clearModalFields() {
-            document.getElementById('modalCode').value = '';
-            document.getElementById('modalDescription').value = '';
-            document.getElementById('modalPrice').value = '';
-            document.getElementById('modalStock').value = '';
-        }
-
-        function addItem() {
-            const code = document.getElementById('modalCode').value;
-            const description = document.getElementById('modalDescription').value;
-            const price = parseFloat(document.getElementById('modalPrice').value);
-            const stock = parseInt(document.getElementById('modalStock').value);
-
-            if (!code || !description || isNaN(price) || isNaN(stock)) {
-                alert('Por favor, completa todos los campos correctamente.');
-                return;
-            }
-
-            const items = JSON.parse(localStorage.getItem(itemsKey)) || [];
-            const newItem = {
-                id: items.length ? items[items.length - 1].id + 1 : 1,
-                code,
-                description,
-                price,
-                stock,
-                enabled: true // Se establece habilitado en true por defecto
-            };
-
-            items.push(newItem);
-            localStorage.setItem(itemsKey, JSON.stringify(items));
-            closeModal(); // Cerrar modal
-            renderItems();
-        }
-
-        function renderItems() {
-            const items = JSON.parse(localStorage.getItem(itemsKey)) || [];
-            const itemList = document.getElementById('itemList');
-            itemList.innerHTML = '';
-
-            items.forEach(item => {
-                const itemRow = document.createElement('tr');
-                itemRow.innerHTML = `
-                    <td>${item.id}</td>
-                    <td>${item.code}</td>
-                    <td>${item.description}</td>
-                    <td>${item.price}</td>
-                    <td>${item.stock}</td>
-                    <td>${item.enabled ? 'Sí' : 'No'}</td>
-                    <td>
-                        <button onclick="editItem(${item.id})">✏️</button>
-                        <button onclick="deleteItem(${item.id})">🗑️</button>
-                    </td>
-                `;
-                itemList.appendChild(itemRow);
-            });
-        }
-
-        function deleteItem(id) {
-            const items = JSON.parse(localStorage.getItem(itemsKey));
-            const updatedItems = items.filter(item => item.id !== id);
-            localStorage.setItem(itemsKey, JSON.stringify(updatedItems));
-            renderItems();
-        }
-
-        function editItem(id) {
-            const items = JSON.parse(localStorage.getItem(itemsKey));
-            const item = items.find(item => item.id === id);
-            if (item) {
-                document.getElementById('modalCode').value = item.code;
-                document.getElementById('modalDescription').value = item.description;
-                document.getElementById('modalPrice').value = item.price;
-                document.getElementById('modalStock').value = item.stock;
-                deleteItem(id);
-                openModal();
-            }
-        }
-
-        window.onload = renderItems;
-    </script>
 </head>
 <body>
-    <nav>
-        <button onclick="location.href='index.html'">Clientes</button>
-        <button onclick="location.href='items.html'">Ítems</button>
-        <button onclick="location.href='pedidos.html'">Pedidos</button>
-    </nav>
-    <div class="divider"></div>
-
-    <main>
-        <h1>Gestión de Ítems</h1>
-        
-        <button class="new-item-btn" onclick="openModal()">Nuevo Ítem</button>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Código</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Habilitado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="itemList">
-                <!-- Los ítems se mostrarán aquí -->
-            </tbody>
-        </table>
-    </main>
-
-    <!-- Modal para agregar ítem -->
-    <div id="itemModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Agregar Nuevo Ítem</h2>
-            <div class="form-group">
-                <label for="modalCode">Código</label>
-                <input type="text" id="modalCode" placeholder="Código" required>
-            </div>
-            <div class="form-group">
-                <label for="modalDescription">Descripción</label>
-                <input type="text" id="modalDescription" placeholder="Descripción" required>
-            </div>
-            <div class="form-group">
-                <label for="modalPrice">Precio</label>
-                <input type="number" id="modalPrice" placeholder="Precio" required>
-            </div>
-            <div class="form-group">
-                <label for="modalStock">Stock</label>
-                <input type="number" id="modalStock" placeholder="Stock" required>
-            </div>
-            <button class="create-btn" onclick="addItem()">Crear Ítem</button>
+    <h1 class="text-center mb-4 text-3xl font-bold">Gestión de Ítems</h1>
+    <div class="flex justify-center mb-4">
+        <div class="flex space-x-2">
+            <button class="bg-green-500 text-white px-4 py-2 rounded-md">Clientes</button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-md">Pedidos</button>
         </div>
     </div>
+    <button id="btnCrear" class="btn">Crear Ítem</button>
+    <div class="flex justify-center mb-4">
+    </div>
+    <table id="tablaItems">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Habilitado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Modal Crear Ítem -->
+    <div id="modalItem" class="modal">
+        <div class="modal-content">
+            <span id="btnCloseCreateModal" class="close">&times;</span>
+            <h2>Crear Ítem</h2>
+            <form id="createForm">
+                <input type="text" id="codigo" placeholder="Código" required>
+                <input type="text" id="descripcion" placeholder="Descripción" required>
+                <input type="number" id="precio" placeholder="Precio" required>
+                <input type="number" id="stock" placeholder="Stock" required>
+                </select>
+                <button type="submit" class="btn">Crear</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Editar Ítem -->
+    <div id="modalEditItem" class="modal">
+        <div class="modal-content">
+            <span id="btnCloseEditModal" class="close">&times;</span>
+            <h2>Editar Ítem</h2>
+            <form id="editForm">
+                <input type="hidden" id="editItemId">
+                <input type="text" id="editCodigo" placeholder="Código" required>
+                <input type="text" id="editDescripcion" placeholder="Descripción" required>
+                <input type="number" id="editPrecio" placeholder="Precio" required>
+                <input type="number" id="editStock" placeholder="Stock" required>
+                <label for="editHabilitado">Habilitado:</label>
+                <select id="editHabilitado" required>
+                    <option value="true">Sí</option>
+                    <option value="false">No</option>
+                </select>
+                <button type="submit" class="btn">Actualizar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

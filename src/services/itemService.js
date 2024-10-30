@@ -23,7 +23,7 @@ const createItem = (newItem) => {
     // Crea un objeto de item con un ID único utilizando uuid
     const itemToInsert = {
         ...newItem,
-        id: uuid(),
+        id: Math.floor(Math.random() * 100000).toString(),
         habilitado: true
     };
 

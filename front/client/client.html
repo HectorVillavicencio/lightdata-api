@@ -1,153 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <title>Gestión de Clientes</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Enlace al CSS -->
-    <script>
-        const clientsKey = 'clients';
-
-        function openModal() {
-            document.getElementById('clientModal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('clientModal').style.display = 'none';
-            clearModalFields(); // Limpiar campos al cerrar
-        }
-
-        function clearModalFields() {
-            document.getElementById('modalName').value = '';
-            document.getElementById('modalEmail').value = '';
-            document.getElementById('modalPhone').value = '';
-            document.getElementById('modalAddress').value = '';
-        }
-
-        function addClient() {
-            const name = document.getElementById('modalName').value;
-            const email = document.getElementById('modalEmail').value;
-            const phone = document.getElementById('modalPhone').value;
-            const address = document.getElementById('modalAddress').value;
-
-            if (!name || !email || !phone || !address) {
-                alert('Por favor, completa todos los campos.');
-                return;
-            }
-
-            const clients = JSON.parse(localStorage.getItem(clientsKey)) || [];
-            const newClient = {
-                id: clients.length ? clients[clients.length - 1].id + 1 : 1,
-                name,
-                email,
-                phone,
-                address
-            };
-
-            clients.push(newClient);
-            localStorage.setItem(clientsKey, JSON.stringify(clients));
-            closeModal(); // Cerrar modal
-            renderClients();
-        }
-
-        function renderClients() {
-            const clients = JSON.parse(localStorage.getItem(clientsKey)) || [];
-            const clientList = document.getElementById('clientList');
-            clientList.innerHTML = '';
-
-            clients.forEach(client => {
-                const clientItem = document.createElement('tr');
-                clientItem.innerHTML = `
-                    <td>${client.id}</td>
-                    <td>${client.name}</td>
-                    <td>${client.email}</td>
-                    <td>${client.phone}</td>
-                    <td>${client.address}</td>
-                    <td>
-                        <button onclick="editClient(${client.id})">✏️</button>
-                        <button onclick="deleteClient(${client.id})">🗑️</button>
-                    </td>
-                `;
-                clientList.appendChild(clientItem);
-            });
-        }
-
-        function deleteClient(id) {
-            const clients = JSON.parse(localStorage.getItem(clientsKey));
-            const updatedClients = clients.filter(client => client.id !== id);
-            localStorage.setItem(clientsKey, JSON.stringify(updatedClients));
-            renderClients();
-        }
-
-        function editClient(id) {
-            const clients = JSON.parse(localStorage.getItem(clientsKey));
-            const client = clients.find(client => client.id === id);
-            if (client) {
-                document.getElementById('modalName').value = client.name;
-                document.getElementById('modalEmail').value = client.email;
-                document.getElementById('modalPhone').value = client.phone;
-                document.getElementById('modalAddress').value = client.address;
-                deleteClient(id);
-                openModal();
-            }
-        }
-
-        window.onload = renderClients;
-    </script>
 </head>
 <body>
-    <nav>
-        <button onclick="location.href='index.html'">Clientes</button>
-        <button onclick="location.href='items.html'">Items</button>
-        <button onclick="location.href='pedidos.html'">Pedidos</button>
-    </nav>
-    <div class="divider"></div>
-
-    <main>
-        <h1>Gestión de Clientes</h1>
-        
-        <button class="new-client-btn" onclick="openModal()">Nuevo Cliente</button>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Teléfono</th>
-                    <th>Dirección</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="clientList">
-                <!-- Los clientes se mostrarán aquí -->
-            </tbody>
-        </table>
-    </main>
-
-    <!-- Modal para agregar cliente -->
-    <div id="clientModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Agregar Nuevo Cliente</h2>
-            <div class="form-group">
-                <label for="modalName">Nombre</label>
-                <input type="text" id="modalName" placeholder="Nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="modalEmail">Email</label>
-                <input type="email" id="modalEmail" placeholder="Email" required>
-            </div>
-            <div class="form-group">
-                <label for="modalPhone">Teléfono</label>
-                <input type="tel" id="modalPhone" placeholder="Teléfono" required>
-            </div>
-            <div class="form-group">
-                <label for="modalAddress">Dirección</label>
-                <input type="text" id="modalAddress" placeholder="Dirección" required>
-            </div>
-            <button class="create-btn" onclick="addClient()">Crear Cliente</button>
+    
+    <h1 class="text-center mb-4 text-3xl font-bold">Gestor de Clientes</h1>
+    <div class="flex justify-center mb-4">
+        <div class="flex space-x-2">
+            <button class="bg-green-500 text-white px-4 py-2 rounded-md">Items</button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-md">Pedidos</button>
         </div>
     </div>
+    <div class="container mx-auto mt-4 p-4 bg-white rounded-lg shadow-lg">
+        <button id="btnCrear" class="bg-green-500 text-white px-4 py-2 rounded-md">Crear Cliente</button>
+        <table id="tablaClientes" class="mt-4 min-w-full border border-gray-300">
+            <thead>
+                <tr class="text-center">
+                    <th class="border px-4 py-2">ID</th>
+                    <th class="border px-4 py-2">Nombre</th>
+                    <th class="border px-4 py-2">Email</th>
+                    <th class="border px-4 py-2">Teléfono</th>
+                    <th class="border px-4 py-2">Dirección</th>
+                    <th class="border px-4 py-2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para Crear Cliente -->
+    <div id="modalCliente" class="flex">
+        <div class="modal-content">
+            <h2 class="text-xl font-bold mb-4">Crear Cliente</h2>
+            <form id="createForm">
+                <div class="mb-4">
+                    <label for="nombre" class="block text-sm font-medium">Nombre</label>
+                    <input type="text" id="nombre" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium">Email</label>
+                    <input type="email" id="email" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="telefono" class="block text-sm font-medium">Teléfono</label>
+                    <input type="tel" id="telefono" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="direccion" class="block text-sm font-medium">Dirección</label>
+                    <input type="text" id="direccion" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" id="btnCloseCreateModal" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2">Cancelar</button>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Cliente -->
+    <div id="modalEditCliente" class="flex">
+        <div class="modal-content">
+            <h2 class="text-xl font-bold mb-4">Editar Cliente</h2>
+            <form id="editForm">
+                <input type="hidden" id="editClienteId">
+                <div class="mb-4">
+                    <label for="editNombre" class="block text-sm font-medium">Nombre</label>
+                    <input type="text" id="editNombre" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editEmail" class="block text-sm font-medium">Email</label>
+                    <input type="email" id="editEmail" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editTelefono" class="block text-sm font-medium">Teléfono</label>
+                    <input type="tel" id="editTelefono" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editDireccion" class="block text-sm font-medium">Dirección</label>
+                    <input type="text" id="editDireccion" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" id="btnCloseEditModal" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2">Cancelar</button>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

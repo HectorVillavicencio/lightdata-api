@@ -44,7 +44,7 @@ const createOrder = (newOrder) => {
 
     // Crea un objeto de pedido con un ID único utilizando uuid
     const orderToInsert = {
-        id: uuid(),
+        id: Math.floor(Math.random() * 100000).toString(),
         ...newOrder,
         createdAt: new Date().toLocaleString("en-US", { timeZone: "America/Argentina/Buenos_Aires" })
         

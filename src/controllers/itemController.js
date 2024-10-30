@@ -47,7 +47,7 @@ const createItem = (req, res) => {
     // Valida que todos los atributos requeridos estén en la solicitud
     if (
         !body.codigo ||
-        !body.descripción ||
+        !body.descripcion ||
         typeof body.precio !== "number" ||
         typeof body.stock !== "number"
     ) {
