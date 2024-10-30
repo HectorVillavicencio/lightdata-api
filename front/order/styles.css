@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E9F5E9; /* Fondo verde claro */
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #2E8B57; /* Verde más fuerte */
+    padding: 10px;
+}
+
+nav button {
+    background-color: #A5D6A7; /* Verde más claro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #B2E6B2; /* Cambio de color al pasar el cursor */
+}
+
+.divider {
+    height: 5px;
+    background-color: #2E8B57; /* Verde más fuerte */
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5em; /* Título más grande */
+    color: #2E8B57; /* Verde fuerte */
+}
+
+.new-order-btn {
+    background-color: #A5D6A7; /* Verde más claro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.new-order-btn:hover {
+    background-color: #B2E6B2; /* Cambio de color al pasar el cursor */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #2E8B57; /* Borde verde */
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #A5D6A7; /* Verde más claro */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #F9FFFA; /* Color de fila alterno */
+}
+
+tr:hover {
+    background-color: #D9EDDB; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos del modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Mantener el modal en la pantalla */
+    z-index: 1; /* Encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    overflow: auto; /* Permitir desplazamiento si es necesario */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo negro con opacidad */
+}
+
+.modal-content {
+    background-color: #E9F5E9; /* Fondo verde claro */
+    margin: 15% auto; /* Margen superior del 15% y centrado */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #2E8B57; /* Borde verde */
+    width: 80%; /* Ancho del modal */
+    max-width: 500px; /* Ancho máximo */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.close {
+    color: #A5D6A7; /* Color de la cruz */
+    float: right; /* A la derecha */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Color de la cruz al pasar el cursor */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #2E8B57; /* Color del texto de los labels */
+}
+
+input {
+    width: calc(100% - 20px); /* Ancho total menos margen */
+    padding: 10px;
+    border: 1px solid #2E8B57; /* Borde verde */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.create-btn {
+    background-color: #A5D6A7; /* Verde más claro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.create-btn:hover {
+    background-color: #B2E6B2; /* Cambio de color al pasar el cursor */
+}
+
+.add-item-btn {
+    background-color: #A5D6A7; /* Verde más claro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.add-item-btn:hover {
+    background-color: #B2E6B2; /* Cambio de color al pasar el cursor */
+}

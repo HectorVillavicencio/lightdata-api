@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Clientes</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al CSS -->
+    <script>
+        const clientsKey = 'clients';
+
+        function openModal() {
+            document.getElementById('clientModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('clientModal').style.display = 'none';
+            clearModalFields(); // Limpiar campos al cerrar
+        }
+
+        function clearModalFields() {
+            document.getElementById('modalName').value = '';
+            document.getElementById('modalEmail').value = '';
+            document.getElementById('modalPhone').value = '';
+            document.getElementById('modalAddress').value = '';
+        }
+
+        function addClient() {
+            const name = document.getElementById('modalName').value;
+            const email = document.getElementById('modalEmail').value;
+            const phone = document.getElementById('modalPhone').value;
+            const address = document.getElementById('modalAddress').value;
+
+            if (!name || !email || !phone || !address) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            const clients = JSON.parse(localStorage.getItem(clientsKey)) || [];
+            const newClient = {
+                id: clients.length ? clients[clients.length - 1].id + 1 : 1,
+                name,
+                email,
+                phone,
+                address
+            };
+
+            clients.push(newClient);
+            localStorage.setItem(clientsKey, JSON.stringify(clients));
+            closeModal(); // Cerrar modal
+            renderClients();
+        }
+
+        function renderClients() {
+            const clients = JSON.parse(localStorage.getItem(clientsKey)) || [];
+            const clientList = document.getElementById('clientList');
+            clientList.innerHTML = '';
+
+            clients.forEach(client => {
+                const clientItem = document.createElement('tr');
+                clientItem.innerHTML = `
+                    <td>${client.id}</td>
+                    <td>${client.name}</td>
+                    <td>${client.email}</td>
+                    <td>${client.phone}</td>
+                    <td>${client.address}</td>
+                    <td>
+                        <button onclick="editClient(${client.id})">✏️</button>
+                        <button onclick="deleteClient(${client.id})">🗑️</button>
+                    </td>
+                `;
+                clientList.appendChild(clientItem);
+            });
+        }
+
+        function deleteClient(id) {
+            const clients = JSON.parse(localStorage.getItem(clientsKey));
+            const updatedClients = clients.filter(client => client.id !== id);
+            localStorage.setItem(clientsKey, JSON.stringify(updatedClients));
+            renderClients();
+        }
+
+        function editClient(id) {
+            const clients = JSON.parse(localStorage.getItem(clientsKey));
+            const client = clients.find(client => client.id === id);
+            if (client) {
+                document.getElementById('modalName').value = client.name;
+                document.getElementById('modalEmail').value = client.email;
+                document.getElementById('modalPhone').value = client.phone;
+                document.getElementById('modalAddress').value = client.address;
+                deleteClient(id);
+                openModal();
+            }
+        }
+
+        window.onload = renderClients;
+    </script>
+</head>
+<body>
+    <nav>
+        <button onclick="location.href='index.html'">Clientes</button>
+        <button onclick="location.href='items.html'">Items</button>
+        <button onclick="location.href='pedidos.html'">Pedidos</button>
+    </nav>
+    <div class="divider"></div>
+
+    <main>
+        <h1>Gestión de Clientes</h1>
+        
+        <button class="new-client-btn" onclick="openModal()">Nuevo Cliente</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="clientList">
+                <!-- Los clientes se mostrarán aquí -->
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Modal para agregar cliente -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Agregar Nuevo Cliente</h2>
+            <div class="form-group">
+                <label for="modalName">Nombre</label>
+                <input type="text" id="modalName" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="modalEmail">Email</label>
+                <input type="email" id="modalEmail" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="modalPhone">Teléfono</label>
+                <input type="tel" id="modalPhone" placeholder="Teléfono" required>
+            </div>
+            <div class="form-group">
+                <label for="modalAddress">Dirección</label>
+                <input type="text" id="modalAddress" placeholder="Dirección" required>
+            </div>
+            <button class="create-btn" onclick="addClient()">Crear Cliente</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+/* Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Cambiado a flex-start para alinear todo al principio */
+    height: 100vh;
+    background-color: #E6F4EA;
+    color: #2E8B57;
+}
+
+/* Barra de Navegación */
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #2E8B57;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+}
+
+nav button {
+    flex: 1;
+    padding: 15px 0;
+    font-size: 1.2em; /* Tamaño original */
+    font-weight: bold;
+    color: white;
+    background-color: #2E8B57;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+nav button:hover {
+    background-color: #66CDAA;
+}
+
+/* Línea Divisoria */
+.divider {
+    width: 100%;
+    height: 4px;
+    background-color: #006400; /* Verde más fuerte */
+    margin-top: 60px; /* Ajusta la posición según lo necesites */
+}
+
+/* Estilo de los Títulos */
+main {
+    text-align: center;
+    margin-top: 100px; /* Espacio para que el título no se superponga con los botones */
+}
+
+h1 {
+    font-size: 3.75em; /* Incrementado en un 25% de 3em a 3.75em */
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.875em; /* Incrementado en un 25% de 1.5em a 1.875em */
+    color: #3CB371;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    nav button {
+        font-size: 1em;
+        padding: 10px 0;
+    }
+
+    h1 {
+        font-size: 2.5em; /* Ajustado para pantallas más pequeñas */
+    }
+
+    h2 {
+        font-size: 1.5em; /* Ajustado para pantallas más pequeñas */
+    }
+}
