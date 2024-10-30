@@ -27,7 +27,8 @@ const createNewClient = (newClient) => {
      saveToDatabase(DB);
       return newClient;
     } catch (error){
-      throw { status: 500, message: error?.message || error}
+      throw { status: 500, 
+              message: error?.message || error}
     }
 };
 

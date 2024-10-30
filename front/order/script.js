@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("itemsContainer").innerHTML = `
             <h3>Items</h3>
             <div class="item">
-                <input type="text" class="itemId" placeholder="ID Ítem" required>
+                <input type="text" class="itemId" placeholder="ID item" required>
                 <input type="number" class="itemStock" placeholder="Stock" required>
             </div>
         `;

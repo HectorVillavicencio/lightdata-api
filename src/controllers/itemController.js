@@ -22,7 +22,7 @@ const getOneItem = (req, res) => {
 
     if (!itemId) {
         // Revisa si el ID de item no fue dado
-        res.status(400).send({
+        res.status(404).send({
             status: "FAILED",
             data: { error: "item no encontrado" },
         });
@@ -52,7 +52,7 @@ const createItem = (req, res) => {
         typeof body.precio !== "number" ||
         typeof body.stock !== "number"
     ) {
-        res.status(400).send({
+        res.status(404).send({
             status: "FAILED",
             data: { error: "Faltan algunos atributos o ya existe un item con ese código" }
         });
@@ -62,7 +62,7 @@ const createItem = (req, res) => {
     // Crea un nuevo objeto item con los datos de la solicitud
     const newItem = {
         codigo: body.codigo,
-        descripción: body.descripción,
+        descripcion: body.descripcion,
         precio: body.precio,
         stock: body.stock
     };
@@ -87,7 +87,10 @@ const updateOneItem = (req, res) => {
     } = req;
 
     if (!itemId) {
-        return;
+        return res.status(404).send({
+            status: "FAILED",
+            data: {error: "cliente no encontrado"}
+        });
     }
     try {
         // Llama al servicio para actualizar el item con los campos proporcionados
@@ -107,7 +110,7 @@ const deleteOneItem = (req, res) => {
     } = req;
 
     if (!itemId) {
-        return res.status(400).send({
+        return res.status(404).send({
             status: "FAILED",
             data: { error: "item no encontrado" }
         });

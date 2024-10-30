@@ -1,18 +1,39 @@
 {
   "clientes": [
     {
-      "nombre": "ds",
+      "nombre": "dsds1",
       "email": "fvillavicencio2@gmail.com",
       "telefono": "2323",
       "direccion": "232323ddssd",
       "id": "1"
     },
     {
-      "nombre": "xx",
+      "nombre": "xxx",
       "email": "relevamiento.qbv.lp@gmail.com",
       "telefono": "2323",
       "direccion": "232323ddssd",
       "id": "75591"
+    },
+    {
+      "nombre": "xx1",
+      "email": "relevamiento.qbv.lp@gmail.com",
+      "telefono": "1",
+      "direccion": "111",
+      "id": "99118"
+    },
+    {
+      "nombre": "pepe",
+      "email": "fvillavicencio2@gmail.com",
+      "telefono": "01123991152",
+      "direccion": "sdsd",
+      "id": "94872"
+    },
+    {
+      "nombre": "pepe1",
+      "email": "sdsd@sdjs",
+      "telefono": "2323",
+      "direccion": "232323ddssd",
+      "id": "29458"
     }
   ],
   "items": [
@@ -38,6 +59,29 @@
       "id": "1044",
       "habilitado": true,
       "descripcion": "es un palito"
+    },
+    {
+      "codigo": "barreta1",
+      "precio": 1,
+      "stock": 3,
+      "id": "75915",
+      "habilitado": true
+    },
+    {
+      "codigo": "barreta00",
+      "precio": 2,
+      "stock": 2,
+      "id": "68095",
+      "habilitado": true,
+      "descripcion": "funciona"
+    },
+    {
+      "codigo": "palito2",
+      "descripcion": "es una cosa bonita",
+      "precio": 2,
+      "stock": 1,
+      "id": "25498",
+      "habilitado": true
     }
   ],
   "orders": [

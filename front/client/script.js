@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalCliente.style.display = "none";
     });
 
-    // Editar cliente
+    // Editar al cliente
     editForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const id = document.getElementById("editClienteId").value;

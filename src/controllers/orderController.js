@@ -23,7 +23,7 @@ const getOneOrder = (req, res) => {
 
     if (!orderId) {
         // Revisa si el ID de pedido no fue dado
-        res.status(400).send({
+        res.status(404).send({
             status: "FAILED",
             data: { error: "pedido no encontrado" },
         });

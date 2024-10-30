@@ -23,7 +23,7 @@ app.use("/api/items", itemRouter);
 app.use("/api/order", itemorder);
 
 
-// Inicia el servidor y escucha en el puerto especificado
+// Inicia el servidor y se levanta en el puerto especificado
 app.listen(PORT, () => {
     console.log(`El server se levanto en el puerto ${PORT}`)});
 

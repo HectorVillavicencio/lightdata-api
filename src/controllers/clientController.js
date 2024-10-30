@@ -24,7 +24,7 @@ const getOneClient = (req, res) => {
 
     if(!clientId){
         // Revisa si el ID de cliente no fue dado
-        res.status(400).send({
+        res.status(404).send({
             status: "FAILED",
             data: { error: "cliente no encontrado" },
           });
@@ -55,7 +55,7 @@ const createClient = (req, res) => {
         !body.telefono ||
         !body.direccion
     ) {
-        res.status(400).send({ status: "FAILED", data: {error: 
+        res.status(404).send({ status: "FAILED", data: {error: 
             "Algun atributo falta o ya existe un cliente con ese nombre"} });
     }
     
@@ -88,7 +88,10 @@ const updateOneClient = (req, res) => {
     } = req;
 
     if(!clientId) {
-        return;
+        return res.status(404).send({
+            status: "FAILED",
+            data: {error: "cliente no encontrado"}
+        });
     }
     try{
         // Llama al servicio para actualizar el cliente con los campos proporcionados
@@ -109,7 +112,7 @@ const deleteOneClient = (req, res) => {
     } = req;
 
     if (!clientId) {
-        return res.status(400).send({
+        return res.status(404).send({
             status: "FAILED",
             data: {error: "cliente no encontrado"}
         });
