@@ -6,42 +6,78 @@ const { v4: uuid } = require("uuid");
 
 // Servicio para obtener todos los items
 const getAllItems = () => {
-    // Llama al modelo para obtener todos los items desde la base de datos
-    const allItems = item.getAllItems();
-    return allItems;
+    try{
+
+        // Llama al modelo para obtener todos los items desde la base de datos
+        const allItems = item.getAllItems();
+        return allItems;
+
+    } catch{
+        throw{status: 500,
+              message: "No se pudo obtener la lista de item"};
+    }
+
 };
 
 // Servicio para obtener un item específico por su ID
 const getOneItem = (itemId) => {
-    // Llama al modelo para obtener un item por su ID
-    const i = item.getOneItem(itemId);
-    return i;
+    try{
+        // Llama al modelo para obtener un item por su ID
+        const i = item.getOneItem(itemId);
+        return i;
+
+    } catch{
+        throw{status: 500,
+              message: "No se pudo obtener el item"};
+    }
+
 };
 
 // Servicio para crear un nuevo item
 const createItem = (newItem) => {
-    // Crea un objeto de item con un ID único utilizando uuid
-    const itemToInsert = {
+    try{
+        // Crea un objeto de item con un ID único utilizando uuid
+        const itemToInsert = {
         ...newItem,
         id: Math.floor(Math.random() * 100000).toString(),
         habilitado: true
-    };
+        };
 
-    console.log("itemToInsert", itemToInsert);
+        console.log("itemToInsert", itemToInsert);
 
-    // Llama al modelo para insertar el nuevo item en la base de datos
-    const createItem = item.createNewItem(itemToInsert);
-    return createItem;
+        // Llama al modelo para insertar el nuevo item en la base de datos
+        const createItem = item.createNewItem(itemToInsert);
+        return createItem;
+
+    } catch{
+        throw{status: 500,
+              message: "No se pudo crear el item"};
+    }
+
 };
+
 
 // Servicio para actualizar un item específico por su nombre y aplicar cambios
 const updateOneItem = (nombre, changes) => {
-    const updateItem = item.updateOneItem(nombre, changes);
-    return updateItem;
+    try{
+        const updateItem = item.updateOneItem(nombre, changes);
+        return updateItem;
+    } catch{
+        throw{status: 500,
+              message: "No se pudo obtener el item"};
+    }
+
 };
 
 // Servicio para eliminar un item específico por su ID
 const deleteOneItem = (itemId) => {
+    try{
+        // Llama al modelo para eliminar el item por su ID
+        item.deleteOneItem(itemId);
+    } catch{
+        throw{status: 500,
+              message: "No se pudo obtener el item"};
+    }
     // Llama al modelo para eliminar el item por su ID
     item.deleteOneItem(itemId);
 };
