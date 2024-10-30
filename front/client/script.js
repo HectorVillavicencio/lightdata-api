@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalEditCliente.style.display = "none";
     });
 
-    // Cargar y mostrar clientes en la tabla
+    // carga y muestra a los clientes en la tabla
     async function cargarClientes() {
         const response = await fetch("http://localhost:3000/api/clients");
         const { status, data } = await response.json();
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Abrir modal para editar cliente
+    // abre modal para editar cliente
     window.editarCliente = async (id) => {
         const response = await fetch(`http://localhost:3000/api/clients/${id}`);
         const { status, data } = await response.json();
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Eliminar cliente
+    // Elimina cliente
     window.eliminarCliente = async (id) => {
         const confirmDelete = confirm("¿Estás seguro de que deseas eliminar este cliente?");
         if (confirmDelete) {

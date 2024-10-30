@@ -11,61 +11,91 @@
     <h1 class="text-center mb-4 text-3xl font-bold">Gestión de Ítems</h1>
     <div class="flex justify-center mb-4">
         <div class="flex space-x-2">
-            <button class="bg-green-500 text-white px-4 py-2 rounded-md">Clientes</button>
-            <button class="bg-green-500 text-white px-4 py-2 rounded-md">Pedidos</button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-md" onclick="location.href='../client/client.html'">Clientes</button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-md" onclick="location.href='../order/order.html'">Pedidos</button>
         </div>
     </div>
-    <button id="btnCrear" class="btn">Crear Ítem</button>
-    <div class="flex justify-center mb-4">
+    <div class="container mx-auto mt-4 p-4 bg-white rounded-lg shadow-lg">
+        <button id="btnCrear" class="bg-green-500 text-white px-4 py-2 rounded-md">Crear Ítem</button>
+    
+        <table id="tablaItems" class="mt-4 min-w-full border border-gray-300">
+            <thead>
+                <tr class="text-center">
+                    <th class="border px-4 py-2">ID</th>
+                    <th class="border px-4 py-2">Código</th>
+                    <th class="border px-4 py-2">Descripción</th>
+                    <th class="border px-4 py-2">Precio</th>
+                    <th class="border px-4 py-2">Stock</th>
+                    <th class="border px-4 py-2">Habilitado</th>
+                    <th class="border px-4 py-2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
-    <table id="tablaItems">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Habilitado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
 
     <!-- Modal Crear Ítem -->
-    <div id="modalItem" class="modal">
+    <div id="modalItem" class="flex">
         <div class="modal-content">
-            <span id="btnCloseCreateModal" class="close">&times;</span>
-            <h2>Crear Ítem</h2>
+            <h2 class="text-xl font-bold mb-4">Crear Ítem</h2>
             <form id="createForm">
-                <input type="text" id="codigo" placeholder="Código" required>
-                <input type="text" id="descripcion" placeholder="Descripción" required>
-                <input type="number" id="precio" placeholder="Precio" required>
-                <input type="number" id="stock" placeholder="Stock" required>
-                </select>
-                <button type="submit" class="btn">Crear</button>
+                <div class="mb-4">
+                    <label for="codigo" class="block text-sm font-medium">Código</label>
+                    <input type="text" id="codigo" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="descripcion" class="block text-sm font-medium">Descripción</label>
+                    <input type="text" id="descripcion" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="precio" class="block text-sm font-medium">Precio</label>
+                    <input type="number" id="precio" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="stock" class="block text-sm font-medium">Stock</label>
+                    <input type="number" id="stock" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" id="btnCloseCreateModal" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2">Cancelar</button>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md">Crear</button>
+                </div>
             </form>
         </div>
     </div>
 
     <!-- Modal Editar Ítem -->
-    <div id="modalEditItem" class="modal">
+    <div id="modalEditItem" class="flex">
         <div class="modal-content">
-            <span id="btnCloseEditModal" class="close">&times;</span>
-            <h2>Editar Ítem</h2>
+            <h2 class="text-xl font-bold mb-4">Editar Ítem</h2>
             <form id="editForm">
                 <input type="hidden" id="editItemId">
-                <input type="text" id="editCodigo" placeholder="Código" required>
-                <input type="text" id="editDescripcion" placeholder="Descripción" required>
-                <input type="number" id="editPrecio" placeholder="Precio" required>
-                <input type="number" id="editStock" placeholder="Stock" required>
-                <label for="editHabilitado">Habilitado:</label>
-                <select id="editHabilitado" required>
-                    <option value="true">Sí</option>
-                    <option value="false">No</option>
-                </select>
-                <button type="submit" class="btn">Actualizar</button>
+                <div class="mb-4">
+                    <label for="editCodigo" class="block text-sm font-medium">Código</label>
+                    <input type="text" id="editCodigo" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editDescripcion" class="block text-sm font-medium">Descripción</label>
+                    <input type="text" id="editDescripcion" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editPrecio" class="block text-sm font-medium">Precio</label>
+                    <input type="number" id="editPrecio" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editStock" class="block text-sm font-medium">Stock</label>
+                    <input type="number" id="editStock" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="editHabilitado" class="block text-sm font-medium">Habilitado:</label>
+                    <select id="editHabilitado" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" id="btnCloseEditModal" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2">Cancelar</button>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md">Actualizar</button>
+                </div>
             </form>
         </div>
     </div>
