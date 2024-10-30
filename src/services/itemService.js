@@ -12,7 +12,7 @@ const getAllItems = () => {
         const allItems = item.getAllItems();
         return allItems;
 
-    } catch{
+    } catch (error){
         throw{status: 500,
               message: "No se pudo obtener la lista de item"};
     }
@@ -26,7 +26,7 @@ const getOneItem = (itemId) => {
         const i = item.getOneItem(itemId);
         return i;
 
-    } catch{
+    } catch (error){
         throw{status: 500,
               message: "No se pudo obtener el item"};
     }
@@ -49,7 +49,7 @@ const createItem = (newItem) => {
         const createItem = item.createNewItem(itemToInsert);
         return createItem;
 
-    } catch{
+    } catch (error){
         throw{status: 500,
               message: "No se pudo crear el item"};
     }
@@ -62,7 +62,7 @@ const updateOneItem = (nombre, changes) => {
     try{
         const updateItem = item.updateOneItem(nombre, changes);
         return updateItem;
-    } catch{
+    } catch (error){
         throw{status: 500,
               message: "No se pudo obtener el item"};
     }
@@ -74,7 +74,7 @@ const deleteOneItem = (itemId) => {
     try{
         // Llama al modelo para eliminar el item por su ID
         item.deleteOneItem(itemId);
-    } catch{
+    } catch (error){
         throw{status: 500,
               message: "No se pudo obtener el item"};
     }
