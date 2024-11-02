@@ -1,7 +1,7 @@
 {
   "clientes": [
     {
-      "nombre": "dsds",
+      "nombre": "ds",
       "email": "fvillavicencio2@gmail.com",
       "telefono": "2323",
       "direccion": "232323ddssd",
@@ -13,13 +13,6 @@
       "telefono": "2323",
       "direccion": "232323ddssd",
       "id": "75591"
-    },
-    {
-      "nombre": "pepe",
-      "email": "relevamiento.qbv.lp@gmail.com",
-      "telefono": "sdsd",
-      "direccion": "232323ddssd",
-      "id": "21343"
     }
   ],
   "items": [
@@ -32,25 +25,24 @@
       "id": "1"
     },
     {
-      "codigo": "barreta",
-      "precio": 2,
-      "stock": 2,
-      "id": "71129",
-      "habilitado": true,
-      "descripcion": "undefined"
-    },
-    {
       "codigo": "barretaw",
       "precio": 2,
       "stock": 2,
       "id": "94455",
       "habilitado": false,
       "descripcion": "undefined"
+    },
+    {
+      "codigo": "barreta",
+      "precio": 2,
+      "stock": 2,
+      "id": "5931",
+      "habilitado": true
     }
   ],
   "orders": [
     {
-      "id": "a09ad964-0f39-4e88-a733-1ab3ea3b1f18",
+      "id": "1",
       "clienteId": "1",
       "items": [
         {
@@ -65,7 +57,7 @@
       "createdAt": "10/29/2024, 10:52:27 PM"
     },
     {
-      "id": "5853c8e2-7331-4123-ba69-897ab653d906",
+      "id": "3",
       "clienteId": "1",
       "items": [
         {
@@ -80,7 +72,7 @@
       "createdAt": "10/29/2024, 10:52:41 PM"
     },
     {
-      "id": "46b10401-8cbf-41e2-ad1e-d8cc409bda0a",
+      "id": "2",
       "clienteId": "1",
       "items": [
         {

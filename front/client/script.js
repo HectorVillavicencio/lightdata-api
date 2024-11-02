@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnCloseEditModal").addEventListener("click", () => {
         modalEditCliente.style.display = "none";
     });
+    document.getElementById("btnCloseBuscarModal").addEventListener("click", () => {
+        modalBuscarCliente.style.display = "none";
+    });
 
     // Cargar clientes al iniciar
     cargarClientes();
@@ -117,6 +120,29 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             cargarClientes();
+        }
+    };
+
+
+    // Buscar cliente específico
+    window.buscarCliente = async () => {
+        const clienteId = document.getElementById("buscarClienteId").value;
+        if (clienteId) {
+            const response = await fetch(`http://localhost:3000/api/clients/${clienteId}`);
+            const { status, data } = await response.json();
+
+            if (status === "OK") {
+                document.getElementById("detalleId").innerText = data.id;
+                document.getElementById("detalleNombre").innerText = data.nombre;
+                document.getElementById("detalleEmail").innerText = data.email;
+                document.getElementById("detalleTelefono").innerText = data.telefono;
+                document.getElementById("detalleDireccion").innerText = data.direccion;
+                modalBuscarCliente.style.display = "flex";
+            } else {
+                alert("Cliente no encontrado.");
+            }
+        } else {
+            alert("Por favor ingresa un ID válido.");
         }
     };
 });

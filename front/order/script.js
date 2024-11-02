@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnCloseCreateModalPedido").addEventListener("click", () => {
         modalPedido.style.display = "none";
     });
+    document.getElementById("btnCloseBuscarModal").addEventListener("click", () => {
+        modalBuscarCliente.style.display = "none";
+    });
 
     // Crear pedido
     createOrderForm.addEventListener("submit", async (e) => {
@@ -85,4 +88,33 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         document.getElementById("itemsContainer").appendChild(newItemDiv);
     });
+
+     // Buscar pedido específico
+     window.buscarPedido = async () => {
+        const id = document.getElementById("buscarPedidoId").value;
+        if (id) {
+            try {
+                const response = await fetch(`http://localhost:3000/api/order/${id}`);
+                const { status, data } = await response.json();
+    
+                if (status === "OK") {
+                    document.getElementById("detalleId").innerText = data.id;
+                    document.getElementById("detalleClienteId").innerText = data.clienteId; 
+                    document.getElementById("detalleItems").innerHTML = data.items.map(item => `ID: ${item.id}, Stock: ${item.stock}`).join('<br>'); 
+                    document.getElementById("detalleFechaCreacion").innerText = new Date(data.createdAt).toLocaleString(); 
+                    modalBuscarCliente.style.display = "flex";
+                } else {
+                    alert("Pedido no encontrado.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Ocurrió un error al buscar el pedido.");
+            }
+        } else {
+            alert("Por favor ingresa un ID válido.");
+        }
+    };
+
+
+
 });

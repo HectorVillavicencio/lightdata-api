@@ -85,4 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         document.getElementById("itemsContainer").appendChild(newItemDiv);
     });
+
+    
+
+
+
 });

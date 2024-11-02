@@ -17,7 +17,12 @@
     </div>
     <div class="container mx-auto mt-4 p-4 bg-white rounded-lg shadow-lg">
         <button id="btnCrear" class="bg-green-500 text-white px-4 py-2 rounded-md">Crear Ítem</button>
-    
+    <!-- Campo de búsqueda -->
+    <div class="my-4">
+        <label for="buscarItemId" class="block text-sm font-medium">Buscar item por ID:</label>
+        <input type="number" id="buscarItemId" class="border px-2 py-1 rounded-md mr-2">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-md" onclick="buscarItem()">Buscar</button>
+    </div>
         <table id="tablaItems" class="mt-4 min-w-full border border-gray-300">
             <thead>
                 <tr class="text-center">
@@ -63,6 +68,20 @@
         </div>
     </div>
 
+    <!-- Modal para mostrar Cliente específico -->
+    <div id="modalBuscarCliente" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="text-xl font-bold mb-4">Detalle del Cliente</h2>
+            <p><strong>ID:</strong> <span id="detalleId"></span></p>
+            <p><strong>Codigo:</strong> <span id="detalleCodigo"></span></p>
+            <p><strong>Descripcion:</strong> <span id="detalleDescripcion"></span></p>
+            <p><strong>Precio:</strong> <span id="detallePrecio"></span></p>
+            <p><strong>Strock:</strong> <span id="detalleStock"></span></p>
+            <p><strong>Habilitado:</strong> <span id="detalleHabilitado"></span></p>
+            <button type="button" id="btnCloseBuscarModal" class="bg-gray-500 text-white px-4 py-2 rounded-md">Cerrar</button>
+        </div>
+    </div>
+
     <!-- Modal Editar Ítem -->
     <div id="modalEditItem" class="flex">
         <div class="modal-content">
@@ -99,6 +118,8 @@
             </form>
         </div>
     </div>
+
+    
 
     <script src="script.js"></script>
 </body>
