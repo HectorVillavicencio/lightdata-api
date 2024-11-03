@@ -38,6 +38,13 @@
       "stock": 2,
       "id": "5931",
       "habilitado": true
+    },
+    {
+      "codigo": "barreta0",
+      "precio": 4,
+      "stock": 4,
+      "id": "95670",
+      "habilitado": true
     }
   ],
   "orders": [
