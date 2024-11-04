@@ -17,34 +17,27 @@
   ],
   "items": [
     {
-      "codigo": "memesito",
-      "descripcion": "unde",
-      "precio": 6,
-      "habilitado": true,
-      "stock": 7,
-      "id": "1"
-    },
-    {
-      "codigo": "barretaw",
-      "precio": 2,
-      "stock": 2,
-      "id": "94455",
-      "habilitado": false,
-      "descripcion": "undefined"
-    },
-    {
-      "codigo": "barreta",
-      "precio": 2,
-      "stock": 2,
-      "id": "5931",
-      "habilitado": true
-    },
-    {
       "codigo": "barreta0",
       "precio": 4,
       "stock": 4,
       "id": "95670",
+      "habilitado": true,
+      "descripcion": "cosita"
+    },
+    {
+      "codigo": "palito",
+      "precio": 3,
+      "stock": 3,
+      "id": "34380",
       "habilitado": true
+    },
+    {
+      "codigo": "barretadfdf",
+      "precio": 3,
+      "stock": 4,
+      "id": "1044",
+      "habilitado": true,
+      "descripcion": "es un palito"
     }
   ],
   "orders": [

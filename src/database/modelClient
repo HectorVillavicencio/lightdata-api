@@ -41,7 +41,7 @@ const getOneClient =(clientId) => {
     if(!client){
       // Lanza un error si el cliente no se encuentra
       throw {
-        status: 400,
+        status: 404,
         message: "Cliente no encontrado",
       };
     }

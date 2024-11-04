@@ -66,13 +66,14 @@ const getOneOrder = (orderId) => {
         if (!order) {
             // Lanza un error si el pedido no se encuentra
             throw {
-                status: 400,
+                status: 404,
                 message: "Pedido no encontrado",
             };
         }
         return order;
     } catch (error) {
-        throw { status: error?.status || 500, message: error?.message || error };
+        throw { status: 500,
+                message: "Error interno del servidor" };
     }
 };
 

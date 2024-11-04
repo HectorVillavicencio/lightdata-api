@@ -38,7 +38,7 @@ const getOneItem = (itemId) => {
         if (!item) {
             // Lanza un error si el item no se encuentra
             throw {
-                status: 400,
+                status: 404,
                 message: "Item no encontrado",
             };
         }

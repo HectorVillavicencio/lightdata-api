@@ -1,4 +1,4 @@
-// Importa Express y el enrutador de clientes
+// Importa Express y el enrutador de clientes, items y pedidos
 const express = require ('express');
 const cors = require('cors');
 const clientRouter= require("./routes/clientRoutes");
