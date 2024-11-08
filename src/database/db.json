@@ -1,235 +1,53 @@
 {
   "clientes": [
     {
-      "nombre": "xxx",
-      "email": "relevamiento.qbv.lp@gmail.com",
-      "telefono": "2323",
-      "direccion": "232323ddssd",
-      "id": "75591"
-    },
-    {
-      "nombre": "xx1",
-      "email": "relevamiento.qbv.lp@gmail.com",
-      "telefono": "1",
-      "direccion": "111",
-      "id": "99118"
-    },
-    {
-      "nombre": "pepe",
-      "email": "fvillavicencio2@gmail.com",
-      "telefono": "01123991152",
-      "direccion": "sdsd",
-      "id": "94872"
-    },
-    {
-      "nombre": "pepe1",
-      "email": "sdsd@sdjs",
-      "telefono": "2323",
-      "direccion": "232323ddssd",
-      "id": "29458"
-    },
-    {
-      "nombre": "villa",
+      "nombre": "Hector",
       "email": "fvillavicencio2@gmail.com",
       "telefono": "01123991152",
       "direccion": "sdsd",
       "id": "70653"
     },
     {
-      "nombre": "dd",
-      "email": "fvillavicencio2@gmail.com",
-      "telefono": "01123991152",
-      "direccion": "sdsd",
-      "id": "74514"
+      "nombre": "Fabian",
+      "email": "hola@gmail.com",
+      "telefono": "11221112221",
+      "direccion": "Calle falsa 123",
+      "id": "9300"
     }
   ],
   "items": [
     {
-      "codigo": "barreta1",
-      "precio": 1,
-      "stock": 1,
-      "id": "75915",
+      "codigo": "Barreta",
+      "descripcion": "Es bonita",
+      "precio": 2,
+      "stock": 8,
+      "id": "61913",
       "habilitado": true
     },
     {
-      "codigo": "barreta00",
-      "precio": 2,
+      "codigo": "Palito",
+      "descripcion": "Mide medio metro",
+      "precio": 3,
       "stock": 2,
-      "id": "68095",
-      "habilitado": true,
-      "descripcion": "funciona"
-    },
-    {
-      "codigo": "palito2",
-      "descripcion": "es una cosa bonita",
-      "precio": 2,
-      "stock": 1,
-      "id": "25498",
-      "habilitado": true
-    },
-    {
-      "codigo": "palito1",
-      "descripcion": "es una cosa bonita",
-      "precio": 1,
-      "stock": 1,
-      "id": "5806",
-      "habilitado": true
-    },
-    {
-      "codigo": "barreta",
-      "descripcion": "es una cosa bonita",
-      "precio": 2,
-      "stock": 2,
-      "id": "45168",
+      "id": "93255",
       "habilitado": true
     }
   ],
   "orders": [
     {
-      "id": "1",
-      "clienteId": "1",
+      "id": "42457",
+      "clienteId": "70653",
       "items": [
         {
-          "id": "1",
-          "stock": 1
+          "id": "61913",
+          "stock": 2
         },
         {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 10:52:27 PM"
-    },
-    {
-      "id": "3",
-      "clienteId": "1",
-      "items": [
-        {
-          "id": "1",
-          "stock": 1
-        },
-        {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 10:52:41 PM"
-    },
-    {
-      "id": "2",
-      "clienteId": "1",
-      "items": [
-        {
-          "id": "1",
-          "stock": 1
-        },
-        {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 10:52:42 PM"
-    },
-    {
-      "id": "2f20b1f8-ab0d-4a89-8b2c-003a5b4ef90b",
-      "clienteId": "1",
-      "items": [
-        {
-          "id": "1",
-          "stock": 1
-        },
-        {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 10:52:43 PM"
-    },
-    {
-      "id": "6b331e65-2787-4ac8-ba5e-9c492aba9b57",
-      "clienteId": "1",
-      "items": [
-        {
-          "id": "1",
-          "stock": 1
-        },
-        {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 10:52:44 PM"
-    },
-    {
-      "id": "16515c16-bad2-407b-bf89-823d061797a5",
-      "clienteId": "1",
-      "items": [
-        {
-          "id": "1",
-          "stock": 1
-        },
-        {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 10:56:12 PM"
-    },
-    {
-      "id": "b44f0544-8c33-45ff-9745-bffd76a73a91",
-      "clienteId": "1",
-      "items": [
-        {
-          "id": "1",
-          "stock": 1
-        },
-        {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 11:03:18 PM"
-    },
-    {
-      "id": "5c307bdb-766f-4536-b9ce-037fef312759",
-      "clienteId": "1",
-      "items": [
-        {
-          "id": "1",
-          "stock": 1
-        },
-        {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 11:03:33 PM"
-    },
-    {
-      "id": "133af00b-a026-4149-ae5d-4400c64f0e1a",
-      "clienteId": "1",
-      "items": [
-        {
-          "id": "1",
-          "stock": 1
-        },
-        {
-          "id": "2",
-          "stock": 3
-        }
-      ],
-      "createdAt": "10/29/2024, 11:03:34 PM"
-    },
-    {
-      "id": "71761",
-      "clienteId": "75591",
-      "items": [
-        {
-          "id": "75915",
+          "id": "93255",
           "stock": 2
         }
       ],
-      "createdAt": "10/30/2024, 12:57:29 AM"
+      "createdAt": "10/30/2024, 3:02:06 AM"
     }
   ]
 }

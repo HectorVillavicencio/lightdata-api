@@ -9,54 +9,74 @@ const getAllOrders = () => {
 
 // Función para crear un nuevo pedido en la base de datos
 const createNewOrder =  (newOrder) => {
-    // Verifica si ya existe un pedido con el mismo ID
-    const isAlreadyAdded =
-        DB.orders.findIndex((order) => order.id === newOrder.id) > -1;
-
-    if (isAlreadyAdded) {
-        // Lanza un error si el pedido ya existe
-        throw {
-            status: 400,
-            message: 'Ya existe un pedido con ese código'
-        };
-    }
-
     try {
+        // Verifica si ya existe un pedido con el mismo ID
+        const isAlreadyAdded =
+            DB.orders.findIndex((order) => order.id === newOrder.id) > -1;
+
+        // Verifica si ya existe un pedido con el mismo ID
+        const clienExits =
+            DB.clientes.findIndex((client) => client.id === newOrder.clienteId) > -1;
+
+        // Extrae los id de los clientes en la lista que te pasan
+        const itemsIds = newOrder.items.map(item => item.id);
+        // Verifica si todos los ids están presentes en db.tems y si estan habilitados
+        const allItems = newOrder.items.every((newOrderItem) =>
+            DB.items.some((item) => item.id === newOrderItem.id && item.habilitado)
+        );
+
+    
+
+        if (isAlreadyAdded || !clienExits || !allItems) {
+            // Lanza un error si el pedido ya existe
+            throw {
+                status: 400,
+                message: 'Ya existe un pedido con ese código o hay un problema con el cliente o el item'
+            };
+        } 
+
+        //reduce el stock disponible del item 
+        reduceStock(newOrder);
         // Agrega el nuevo pedido al array de pedidos y guarda la base de datos
         DB.orders.push(newOrder);
-        saveToDatabase(DB);
-
-        // Reduce el stock de los ítems después de crear el pedido
-        for (const item of newOrder.items) {
-            const stockItem = DB.items.find(i => i.id === item.id); // Busca el item en la base de datos
-
-            if (!stockItem) {
-                throw {
-                    status: 404,
-                    message: `El item con ID ${item.id} no existe`
-                };
-            }
-
-            // Reduce el stock del ítem
-            stockItem.stock -= item.stock;
-
-            // Opcional: Asegúrate de que no se reduzca a un valor negativo
-            if (stockItem.stock < 0) {
-                throw {
-                    status: 400,
-                    message: `No hay suficiente stock para el item con ID ${item.itemId}`
-                };
-            }
-        }
-
         // Guarda los cambios en el stock después de actualizar
         saveToDatabase(DB);
-        
+
         return newOrder;
     } catch (error) {
         throw { status: 500, message: error?.message || error };
     }
 };
+
+const reduceStock = (newOrder) =>{
+    try {
+        // Reduce el stock de los ítems después de crear el pedido
+        for (const item of newOrder.items) {
+            const stockItem = DB.items.find(i => i.id === item.id && i.habilitado); // Busca el item en la base de datos y si esta habilitado
+
+            if (!stockItem) {
+                throw {
+                    status: 404,
+                    message: `El item con ID no existe`
+                };
+            }
+
+            // Verifica si hay suficiente stock
+            if (stockItem.stock < item.stock) {
+                throw {
+                    status: 400,
+                    message: `No hay suficiente stock para el item con ID}`
+                };
+            }
+
+            // Reduce el stock del ítem
+            stockItem.stock -= item.stock;
+        }
+    } catch (error) {
+        throw { status: 500, message: error?.message || error };
+    }
+
+}
 
 // Función para obtener un pedido específico por su ID
 const getOneOrder = (orderId) => {
