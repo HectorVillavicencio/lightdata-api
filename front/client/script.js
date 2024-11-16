@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
         modalBuscarCliente.style.display = "none";
     });
 
+    //boton de busqueda
+    document.getElementById("buscarClienteBtn").addEventListener("click", buscarClientePor);
+
     // Cargar clientes al iniciar
     cargarClientes();
 
@@ -47,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
         modalCliente.style.display = "none";
     });
 
+
+
     // Editar al cliente
     editForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -70,16 +75,34 @@ document.addEventListener("DOMContentLoaded", () => {
         modalEditCliente.style.display = "none";
     });
 
+    //busca los clientes por nombre
+    async function buscarClientePor() {
+        
+        const filtroNombre = document.getElementById("buscarClientePorNombre").value.trim();
+        
+        if (filtroNombre === "") {
+            alert("Por favor ingresa un nombre para buscar.");
+            return;
+        }    
+        // Llamar a cargarClientes con el nombre como filtro
+        cargarClientes(filtroNombre);
+    }
+
     // carga y muestra a los clientes en la tabla
-    async function cargarClientes() {
-        const response = await fetch("http://localhost:3000/api/clients");
+    async function cargarClientes(filtroNombre = "") {
+        const url = filtroNombre
+            ? `http://localhost:3000/api/clients?nombre=${encodeURIComponent(filtroNombre)}`
+            : "http://localhost:3000/api/clients";
+    
+        const response = await fetch(url);
         const { status, data } = await response.json();
-
+    
         if (status === "OK") {
-            tablaClientes.innerHTML = "";
-
+            const tbody = document.querySelector("#tablaClientes tbody");
+            tbody.innerHTML = ""; // Limpia la tabla antes de rellenarla
+    
             data.forEach(cliente => {
-                const row = tablaClientes.insertRow();
+                const row = document.createElement("tr");
                 row.innerHTML = `
                     <td class="border px-4 py-2 text-center">${cliente.id}</td>
                     <td class="border px-4 py-2">${cliente.nombre}</td>
@@ -91,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="eliminarCliente(${cliente.id})">Eliminar</button>
                     </td>
                 `;
+                tbody.appendChild(row);
             });
         }
     }
@@ -110,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
             modalEditCliente.style.display = "flex";
         }
     };
-
+    
     // Elimina un cliente
     window.eliminarCliente = async (id) => {
         const confirmDelete = confirm("¿Estás seguro de que deseas eliminar este cliente?");

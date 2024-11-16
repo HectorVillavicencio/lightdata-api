@@ -5,7 +5,8 @@ const clientService = require("../services/clientService.js");
 // Controlador para obtener todos los clientes
 const getAllClients = (req, res) => {
     try{
-        const allClients = clientService.getAllClients(); 
+        const{ nombre } = req.query;
+        const allClients = clientService.getAllClients({ nombre }); 
         res.send({status: 'OK', data: allClients});
     } catch (error) {
         res

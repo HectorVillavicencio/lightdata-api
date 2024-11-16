@@ -3,8 +3,19 @@ const DB = require("./db.json");
 const { saveToDatabase} = require("./utils");
 
 // Función para obtener todos los clientes de la base de datos
-const getAllClients = () => {
-    return DB.clientes;
+const getAllClients = (filterParams) => {
+  try{
+    let clients = DB.clientes
+    if(filterParams.nombre){
+      return DB.clientes.filter((cliente) =>
+      cliente.nombre.toLowerCase().includes(filterParams.nombre)
+      );
+    }
+    return clients
+  }catch (error){
+      throw{ status: 500, 
+        message: error?.message || error}
+  }
 };
 
 // Función para crear un nuevo cliente en la base de datos

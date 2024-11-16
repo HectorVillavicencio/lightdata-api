@@ -5,10 +5,10 @@ const client = require("../database/modelClient");
 const { v4: uuid} = require("uuid");
 
 // Servicio para obtener todos los clientes
-const getAllClients = () => { 
+const getAllClients = (filterParams) => { 
     try {    
          // Llama al modelo para obtener todos los clientes desde la base de datos
-        const allClients = client.getAllClients();
+        const allClients = client.getAllClients(filterParams);
         return allClients;
     }catch (error){
         throw { status: 500, 

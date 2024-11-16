@@ -2,34 +2,70 @@
   "clientes": [
     {
       "nombre": "Hector",
-      "email": "fvillavicencio2@gmail.com",
+      "email": "hola@gmail.com",
       "telefono": "01123991152",
-      "direccion": "sdsd",
-      "id": "70653"
+      "direccion": "Calle falsa 456",
+      "id": "75391"
     },
     {
       "nombre": "Fabian",
-      "email": "hola@gmail.com",
-      "telefono": "11221112221",
-      "direccion": "Calle falsa 123",
-      "id": "9300"
+      "email": "faby@mail.com",
+      "telefono": "12322222",
+      "direccion": "Calle falsa 124",
+      "id": "29090"
+    },
+    {
+      "nombre": "Fabian Villavicencio",
+      "email": "fancio@gmail.com",
+      "telefono": "123123",
+      "direccion": "calle veinte 23",
+      "id": "87399"
+    },
+    {
+      "nombre": "Villa",
+      "email": "villancio@gmail.com",
+      "telefono": "456987",
+      "direccion": "celleita 23",
+      "id": "87334"
+    },
+    {
+      "nombre": "Emilio Gomez",
+      "email": "emi@gmail.com",
+      "telefono": "12112111",
+      "direccion": "valencia 23",
+      "id": "55990"
+    },
+    {
+      "nombre": "pepe",
+      "email": "fvillavicencio2@gmail.com",
+      "telefono": "01123991152",
+      "direccion": "232323ddssd",
+      "id": "57641"
     }
   ],
   "items": [
     {
-      "codigo": "Barreta",
-      "descripcion": "Es bonita",
-      "precio": 2,
-      "stock": 8,
-      "id": "61913",
+      "codigo": "BarretaA1",
+      "descripcion": "Es una linda barreta",
+      "precio": 3,
+      "stock": 7,
+      "id": "95915",
+      "habilitado": false
+    },
+    {
+      "codigo": "BarrilL2",
+      "descripcion": "Un barril de 2 litros",
+      "precio": 10,
+      "stock": 4,
+      "id": "81369",
       "habilitado": true
     },
     {
-      "codigo": "Palito",
-      "descripcion": "Mide medio metro",
-      "precio": 3,
-      "stock": 2,
-      "id": "93255",
+      "codigo": "TijeraH1",
+      "descripcion": "Muy afilada",
+      "precio": 6,
+      "stock": 10,
+      "id": "81096",
       "habilitado": true
     }
   ],
@@ -48,6 +84,32 @@
         }
       ],
       "createdAt": "10/30/2024, 3:02:06 AM"
+    },
+    {
+      "id": "93787",
+      "clienteId": "75391",
+      "items": [
+        {
+          "id": "95915",
+          "stock": 3
+        },
+        {
+          "id": "81369",
+          "stock": 3
+        }
+      ],
+      "createdAt": "11/8/2024, 10:57:18 AM"
+    },
+    {
+      "id": "75492",
+      "clienteId": "75391",
+      "items": [
+        {
+          "id": "81369",
+          "stock": 3
+        }
+      ],
+      "createdAt": "11/9/2024, 11:12:52 AM"
     }
   ]
 }
