@@ -5,18 +5,28 @@ const item = require("../database/modelItem");
 const { v4: uuid } = require("uuid");
 
 // Servicio para obtener todos los items
-const getAllItems = () => {
+const getAllItems = (filterParams) => {
     try{
-
         // Llama al modelo para obtener todos los items desde la base de datos
-        const allItems = item.getAllItems();
-        return allItems;
+        let allItems = item.getAllItems();
+         
+        //Filtra los elementos por codigo
+        if(filterParams.codigo){
+            allItems = allItems.filter((item)=>
+                item.codigo.toLowerCase().includes(filterParams.codigo.toLowerCase())
+            );
+        }
 
+        if(filterParams.habilitado){
+            allItems = allItems.filter((item)=>
+                item.habilitado.toString() === filterParams.habilitado.toString()
+            );
+        }
+        return allItems;
     } catch (error){
         throw{status: 500,
               message: "No se pudo obtener la lista de item"};
     }
-
 };
 
 // Servicio para obtener un item específico por su ID

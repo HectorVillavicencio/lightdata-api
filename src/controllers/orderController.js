@@ -5,7 +5,8 @@ const orderService = require("../services/orderService.js");
 // Controlador para obtener todos los pedidos
 const getAllOrders = (req, res) => {
     try {
-        const allOrders = orderService.getAllOrders(); 
+        const { clienteId }= req.query;
+        const allOrders = orderService.getAllOrders({ clienteId }); 
         res.send({ status: 'OK', data: allOrders });
     } catch (error) {
         res

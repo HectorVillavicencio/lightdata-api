@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Por favor ingresa un nombre para buscar.");
             return;
         }    
-        // Llamar a cargarClientes con el nombre como filtro
+        // Llama a cargarClientes con el nombre como filtro
         cargarClientes(filtroNombre);
     }
 

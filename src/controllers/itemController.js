@@ -3,8 +3,13 @@ const itemService = require("../services/itemService.js");
 
 // Controlador para obtener todos los items
 const getAllItems = (req, res) => {
+    const { codigo, habilitado } = req.query;
     try {
-        const allItems = itemService.getAllItems(); 
+        const filtros = {};
+        if (codigo) filtros.codigo = codigo;
+        if (habilitado) filtros.habilitado = habilitado;
+
+        const allItems = itemService.getAllItems(filtros); 
         res.send({ status: 'OK', data: allItems });
     } catch (error) {
         res

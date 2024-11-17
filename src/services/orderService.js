@@ -7,14 +7,21 @@ const order = require("../database/modelOrder");
 const { v4: uuid } = require("uuid");
 
 // Servicio para obtener todos los pedidos
-const getAllOrders = () => {
+const getAllOrders = (filterParams) => {
     try{
         // Llama al modelo para obtener todos los pedidos desde la base de datos
-        const allOrders = order.getAllOrders();
+        let allOrders = order.getAllOrders();
+
+        //Filtra los pedidos de un cliente
+        if(filterParams.clienteId){
+            allOrders = allOrders.filter((order)=>
+                order.clienteId.toLowerCase().includes(filterParams.clienteId.toLowerCase())
+            );
+        }
         return allOrders;
     } catch (error){
         throw{status: 500,
-              message: "No se pudo obtener la lista de item"};
+              message: "No se pudo obtener la lista de pedido"};
     }
 };
 

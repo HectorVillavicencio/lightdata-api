@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
         modalBuscarCliente.style.display = "none";
     });
 
+    //boton de busqueda
+    document.getElementById("buscarItemBtn").addEventListener("click", buscarItemPor);
+
+
 
 
 
@@ -75,9 +79,26 @@ document.addEventListener("DOMContentLoaded", () => {
         modalEditItem.style.display = "none";
     });
 
+       //busca los items por nombre
+       async function buscarItemPor() {
+        
+        const filtroCodigo = document.getElementById("buscarItemPorNombre").value.trim();
+        
+        if (filtroCodigo === "") {
+            alert("Por favor ingresa un codigo para buscar.");
+            return;
+        }    
+        // Llama a cargaritems con el codigo como filtro
+        cargarItems(filtroCodigo);
+    }
+
     // Cargar y mostrar ítems en la tabla
-    async function cargarItems() {
-        const response = await fetch("http://localhost:3000/api/items");
+    async function cargarItems(filtroCodigo = "") {
+        const url = filtroCodigo
+            ? `http://localhost:3000/api/items?codigo=${encodeURIComponent(filtroCodigo)}`
+            : "http://localhost:3000/api/items";
+    
+        const response = await fetch(url);
         const { status, data } = await response.json();
 
         if (status === "OK") {
@@ -97,9 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="eliminarItem(${item.id})">Eliminar</button>
                     </td>
                 `;
-
-
-
             });
         }
     }

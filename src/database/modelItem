@@ -4,7 +4,12 @@ const { saveToDatabase } = require("./utils");
 
 // Función para obtener todos los items de la base de datos
 const getAllItems = () => {
+    try{
     return DB.items;
+    } catch (error){
+        throw{ status: 500,
+            message: error?.message || error}
+    }
 };
 
 // Función para crear un nuevo item en la base de datos
