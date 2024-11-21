@@ -1,0 +1,15 @@
+*{
+  margin: 0;    /* Elimina los márgenes alrededor del texto */
+  padding: 0;   /* Elimina cualquier relleno */
+
+}
+
+footer {
+  width: 100%; /* Asegura que ocupe el ancho completo */
+  margin: 0; /* Elimina cualquier margen adicional */
+  padding: 10px 0; /* Espaciado interno para el contenido */
+  text-align: center;
+  background-color: #2E8B57;
+  color: white;
+}
+

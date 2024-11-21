@@ -174,9 +174,9 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Por favor ingresa un ID válido.");
         }
     };
-
-
-
-
-
+    
 });
+
+
+
+    

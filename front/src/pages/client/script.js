@@ -75,49 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
         modalEditCliente.style.display = "none";
     });
 
-    //busca los clientes por nombre
-    async function buscarClientePor() {
-        
-        const filtroNombre = document.getElementById("buscarClientePorNombre").value.trim();
-        
-        if (filtroNombre === "") {
-            alert("Por favor ingresa un nombre para buscar.");
-            return;
-        }    
-        // Llama a cargarClientes con el nombre como filtro
-        cargarClientes(filtroNombre);
-    }
 
-    // carga y muestra a los clientes en la tabla
-    async function cargarClientes(filtroNombre = "") {
-        const url = filtroNombre
-            ? `http://localhost:3000/api/clients?nombre=${encodeURIComponent(filtroNombre)}`
-            : "http://localhost:3000/api/clients";
-    
-        const response = await fetch(url);
-        const { status, data } = await response.json();
-    
-        if (status === "OK") {
-            const tbody = document.querySelector("#tablaClientes tbody");
-            tbody.innerHTML = ""; // Limpia la tabla antes de rellenarla
-    
-            data.forEach(cliente => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td class="border px-4 py-2 text-center">${cliente.id}</td>
-                    <td class="border px-4 py-2">${cliente.nombre}</td>
-                    <td class="border px-4 py-2">${cliente.email}</td>
-                    <td class="border px-4 py-2">${cliente.telefono}</td>
-                    <td class="border px-4 py-2">${cliente.direccion}</td>
-                    <td class="border px-4 py-2 text-center">
-                        <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="editarCliente(${cliente.id})">Editar</button>
-                        <button class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="eliminarCliente(${cliente.id})">Eliminar</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-    }
+
 
     // abre el modal editar cliente
     window.editarCliente = async (id) => {
@@ -145,14 +104,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
             cargarClientes();
         }
-    };
+    };    
 
+    //busca los clientes por nombre
+    async function buscarClientePor() {
+        
+        const filtroNombre = document.getElementById("buscarClientePorNombre").value.trim();
+        
+        if (filtroNombre === "") {
+            alert("Por favor ingresa un nombre para buscar.");
+            return;
+        }    
+        // Llama a cargarClientes con el nombre como filtro
+        cargarClientes(filtroNombre);
+    }
+    
+    // carga y muestra a los clientes en la tabla
+    async function cargarClientes(filtroNombre = "") {
+        const url = filtroNombre
+            ? `http://localhost:3000/api/clients?nombre=${encodeURIComponent(filtroNombre)}`
+            : "http://localhost:3000/api/clients";
+    
+        const response = await fetch(url);
+        const { status, data } = await response.json();
+    
+        if (status === "OK") {
+            const tbody = document.querySelector("#tablaClientes tbody");
+            tbody.innerHTML = ""; // Limpia la tabla antes de rellenarla
+    
+            data.forEach(cliente => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td class="border px-4 py-2 text-center">${cliente.id}</td>
+                    <td class="border px-4 py-2 text-center">
+                        <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="buscarCliente(${cliente.id})">${cliente.id}</button>
+                    </td>
+                    <td class="border px-4 py-2">${cliente.nombre}</td>
+                    <td class="border px-4 py-2">${cliente.email}</td>
+                    <td class="border px-4 py-2">${cliente.telefono}</td>
+                    <td class="border px-4 py-2">${cliente.direccion}</td>
+                    <td class="border px-4 py-2 text-center">
+                        <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="editarCliente(${cliente.id})">Editar</button>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="eliminarCliente(${cliente.id})">Eliminar</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+    }
 
     // Busca el cliente específico
-    window.buscarCliente = async () => {
-        const clienteId = document.getElementById("buscarClienteId").value;
-        if (clienteId) {
-            const response = await fetch(`http://localhost:3000/api/clients/${clienteId}`);
+    window.buscarCliente = async (clienteId) => {
+        const cliente = clienteId;
+        if (cliente) {
+            const response = await fetch(`http://localhost:3000/api/clients/${cliente}`);
             const { status, data } = await response.json();
 
             if (status === "OK") {

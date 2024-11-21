@@ -9,8 +9,8 @@
 body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Cambiado a flex-start para alinear todo al principio */
+    align-items: stretch; /* Permite a los hijos ocupar el ancho completo */
+    justify-content: flex-start;
     height: 100vh;
     background-color: #E6F4EA;
     color: #2E8B57;
@@ -54,8 +54,8 @@ nav button:hover {
 /* Estilo de los Títulos */
 main {
     text-align: center;
-    margin-top: 100px; /* Espacio para que el título no se superponga con los botones */
-}
+    margin: 120px auto; /* Compensa la barra de navegación fija */
+    flex: 1; /* Permite que el main se adapte al espacio disponible */}
 
 h1 {
     font-size: 3.75em; /* Incrementado en un 25% de 3em a 3.75em */
@@ -81,4 +81,6 @@ h2 {
     h2 {
         font-size: 1.5em; /* Ajustado para pantallas más pequeñas */
     }
+
+
 }

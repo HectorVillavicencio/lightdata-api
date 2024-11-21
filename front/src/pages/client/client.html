@@ -31,6 +31,7 @@
             <thead>
                 <tr class="text-center">
                     <th class="border px-4 py-2">ID</th>
+                    <th class="border px-4 py-2">ID</th>
                     <th class="border px-4 py-2">Nombre</th>
                     <th class="border px-4 py-2">Email</th>
                     <th class="border px-4 py-2">Teléfono</th>
@@ -73,7 +74,7 @@
     </div>
 
         <!-- Modal para mostrar Cliente específico -->
-        <div id="modalBuscarCliente" class="modal hidden">
+        <div id="modalBuscarCliente" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="modal-content">
                 <h2 class="text-xl font-bold mb-4">Detalle del Cliente</h2>
                 <p><strong>ID:</strong> <span id="detalleId"></span></p>
@@ -114,6 +115,7 @@
             </form>
         </div>
     </div>
+    <iframe class="w-full h-24 mt-auto bg-green-600 text-white text-center" src="/front/src/shared/footer/footer.html" frameborder="0"></iframe>
 
     <script src="script.js"></script>
 </body>
