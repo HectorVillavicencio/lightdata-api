@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnCloseBuscarModalItem").addEventListener("click", () => {
         modalBuscarItem.style.display = "none";
     });
+    document.getElementById("btnCloseBuscarModalPedido").addEventListener("click", () => {
+        document.getElementById("modalBuscarPedido").style.display = "none";
+    });
 
 
     // Crear pedido
@@ -66,11 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
             data.forEach(pedido => {
                 const row = tablaPedidos.insertRow();
                 row.innerHTML = `
-                    <td class="border px-4 py-2 text-center">${pedido.id}</td>
+                    <td class="border px-4 py-2">${pedido.id}</td>
                     <td class="border px-4 py-2 text-center">
-                        <button class="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600" onclick="buscarCliente(${pedido.clienteId})">ver cliente</button>
+                        <button class="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600" onclick="buscarCliente(${pedido.clienteId})">${pedido.clienteId}</button>
                     </td>
-                    <td class="border px-4 py-2">${pedido.clienteId}</td>
                     <td class="border px-4 py-2">${pedido.items.map(item => `ID: <button class="bg-white text-black px-2 py-1 rounded-md hover:bg-green-500" onclick="buscarItem(${item.id})">
                   ${item.id}
                </button>, Stock: ${item.stock}`).join('<br>')}</td>
@@ -101,18 +103,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
      // Buscar pedido específico
      window.buscarPedido = async () => {
-        const id = document.getElementById("buscarPedidoId").value;
+        const id = document.getElementById("buscarPedidoId").value; // Obtiene el ID ingresado
         if (id) {
             try {
                 const response = await fetch(`http://localhost:3000/api/order/${id}`);
                 const { status, data } = await response.json();
     
                 if (status === "OK") {
+                    // Actualiza los elementos del modal con los datos del pedido
                     document.getElementById("detalleId").innerText = data.id;
-                    document.getElementById("detalleClienteId").innerText = data.clienteId; 
-                    document.getElementById("detalleItems").innerHTML = data.items.map(item => `ID: ${item.id}, Stock: ${item.stock}`).join('<br>'); 
-                    document.getElementById("detalleFechaCreacion").innerText = new Date(data.createdAt).toLocaleString(); 
-                    modalBuscarCliente.style.display = "flex";
+                    document.getElementById("detalleClienteId").innerText = data.clienteId;
+                    document.getElementById("detalleItems").innerHTML = data.items
+                        .map(item => `ID: ${item.id}, Stock: ${item.stock}`)
+                        .join('<br>'); 
+                    document.getElementById("detalleFechaCreacion").innerText = new Date(data.createdAt).toLocaleString();
+    
+                    // Muestra el modal
+                    document.getElementById("modalBuscarPedido").style.display = "flex";
                 } else {
                     alert("Pedido no encontrado.");
                 }
@@ -138,6 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("detalleEmail").innerText = data.email;
                 document.getElementById("detalleTelefono").innerText = data.telefono;
                 document.getElementById("detalleDireccion").innerText = data.direccion;
+                document.getElementById("detallenroPedidos").innerText = data.nroPedidos;
+
                 modalBuscarCliente.style.display = "flex";
             } else {
                 alert("Cliente no encontrado.");

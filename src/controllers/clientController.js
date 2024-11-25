@@ -18,28 +18,38 @@ const getAllClients = (req, res) => {
 
 
 // Controlador para obtener un cliente específico por su ID
-const getOneClient = (req, res) => {
-    const{
-        params: {clientId},
+const getOneClient = async (req, res) => {
+    const {
+        params: { clientId },
     } = req;
 
-    if(!clientId){
+    if (!clientId) {
         // Revisa si el ID de cliente no fue dado
         res.status(404).send({
             status: "FAILED",
-            data: { error: "cliente no encontrado" },
-          });
-          return;
+            data: { error: "Cliente no encontrado" },
+        });
+        return;
     }
-    try{
+
+    try {
         // Llama al servicio para obtener un cliente por su ID
-        const client = clientService.getOneClient(clientId);
-         res.send({status: "OK", data: client});
+        const client = await clientService.getOneClient(clientId);
+
+        // Envía la respuesta al cliente
+        res.send({ status: "OK", data: client });
     } catch (error) {
-        res
-          .status(error?.status || 500)
-          .send({ status: "FAILED", data: { error: error?.message || error } });
-      }
+        console.error("Error en el controlador:", error);
+
+        res.status(error?.status || 500).send({
+            status: "FAILED",
+            data: { error: error?.message || "Error inesperado" },
+        });
+    }
+};
+
+module.exports = {
+    getOneClient,
 };
 
 

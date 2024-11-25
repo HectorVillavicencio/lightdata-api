@@ -150,30 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
             modalEditItem.style.display = "flex";
         }
     };
-
-
-    // Buscar item específico
-    window.buscarItem = async () => {
-        const id = document.getElementById("buscarItemId").value;
-        if (id) {
-            const response = await fetch(`http://localhost:3000/api/items/${id}`);
-            const { status, data } = await response.json();
-
-            if (status === "OK") {
-                document.getElementById("detalleId").innerText = data.id;
-                document.getElementById("detalleCodigo").innerText = data.codigo;
-                document.getElementById("detalleDescripcion").innerText = data.descripcion;
-                document.getElementById("detallePrecio").innerText = data.precio;
-                document.getElementById("detalleStock").innerText = data.stock;
-                document.getElementById("detalleHabilitado").innerText = data.habilitado.toString();
-                modalBuscarCliente.style.display = "flex";
-            } else {
-                alert("Cliente no encontrado.");
-            }
-        } else {
-            alert("Por favor ingresa un ID válido.");
-        }
-    };
     
 });
 

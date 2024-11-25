@@ -135,14 +135,13 @@ document.addEventListener("DOMContentLoaded", () => {
             data.forEach(cliente => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
-                    <td class="border px-4 py-2 text-center">${cliente.id}</td>
+                    <td class="border px-4 py-2 text-center">
+                        <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="buscarCliente(${cliente.id})">${cliente.id}</button>
+                    </td>
                     <td class="border px-4 py-2">${cliente.nombre}</td>
                     <td class="border px-4 py-2">${cliente.email}</td>
                     <td class="border px-4 py-2">${cliente.telefono}</td>
                     <td class="border px-4 py-2">${cliente.direccion}</td>
-                    <td class="border px-4 py-2 text-center">
-                        <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="buscarCliente(${cliente.id})">${cliente.id}</button>
-                    </td>
                     <td class="border px-4 py-2 text-center">
                         <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="editarCliente(${cliente.id})">Editar</button>
                         <button class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="eliminarCliente(${cliente.id})">Eliminar</button>
@@ -166,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("detalleEmail").innerText = data.email;
                 document.getElementById("detalleTelefono").innerText = data.telefono;
                 document.getElementById("detalleDireccion").innerText = data.direccion;
+                document.getElementById("detallenroPedidos").innerText = data.nroPedidos;
                 modalBuscarCliente.style.display = "flex";
             } else {
                 alert("Cliente no encontrado.");

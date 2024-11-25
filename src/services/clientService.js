@@ -1,3 +1,5 @@
+const order = require("../database/modelOrder");
+
 // Importa el modelo de cliente, que contiene las funciones de acceso a la base de datos
 const client = require("../database/modelClient");
 
@@ -18,14 +20,37 @@ const getAllClients = (filterParams) => {
 };
 
 // Servicio para obtener un cliente específico por su ID
-const getOneClient = (clientId) => { 
-    try{   
-    // Llama al modelo para obtener un cliente por su ID
-        const c = client.getOneClient(clientId);
-        return c;
-    } catch (error){
-        throw { status: 500, 
-                message: "No se pudo obtener el cliente solicitado" };
+const getOneClient = async (clientId) => {
+    try {
+        // Llama al modelo para obtener un cliente por su ID
+        const clientData = await client.getOneClient(clientId);
+        console.log("cliente:", clientData);
+        if (!clientData) {
+            throw { status: 404, message: "Cliente no encontrado" };
+        }
+
+        // Obtiene todos los pedidos relacionados
+        const allOrders = await order.getAllOrders(); // Cambia esto según tu modelo para obtener los pedidos.
+
+        if (!Array.isArray(allOrders)) {
+            throw { status: 500, message: "'allOrders' no es un arreglo válido" };
+        }
+
+        // Filtra los pedidos completados del cliente
+        const completedOrders = allOrders.filter(pedido => pedido.clienteId === clientId);
+        console.log("Pedidos del cliente:", completedOrders);
+
+        return {
+            ...clientData,
+            nroPedidos: completedOrders.length
+            
+        };
+    } catch (error) {
+        console.error("Error en getOneClient:", error);
+        throw {
+            status: error.status || 500,
+            message: error.message || "No se pudo obtener el cliente solicitado"
+        };
     }
 };
 
