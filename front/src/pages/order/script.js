@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modales
     const modalPedido = document.getElementById("modalPedido");
+    
 
     // Abrir y cerrar modales
     document.getElementById("btnCrearPedido").addEventListener("click", () => {
@@ -23,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnCloseBuscarModal").addEventListener("click", () => {
         modalBuscarCliente.style.display = "none";
     });
+    document.getElementById("btnCloseBuscarModalItem").addEventListener("click", () => {
+        modalBuscarItem.style.display = "none";
+    });
+
 
     // Crear pedido
     createOrderForm.addEventListener("submit", async (e) => {
@@ -62,8 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 const row = tablaPedidos.insertRow();
                 row.innerHTML = `
                     <td class="border px-4 py-2 text-center">${pedido.id}</td>
+                    <td class="border px-4 py-2 text-center">
+                        <button class="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600" onclick="buscarCliente(${pedido.clienteId})">ver cliente</button>
+                    </td>
                     <td class="border px-4 py-2">${pedido.clienteId}</td>
-                    <td class="border px-4 py-2">${pedido.items.map(item => `ID: ${item.id}, Stock: ${item.stock}`).join('<br>')}</td>
+                    <td class="border px-4 py-2">${pedido.items.map(item => `ID: <button class="bg-white text-black px-2 py-1 rounded-md hover:bg-green-500" onclick="buscarItem(${item.id})">
+                  ${item.id}
+               </button>, Stock: ${item.stock}`).join('<br>')}</td>
                     <td class="border px-4 py-2">${new Date(pedido.createdAt).toLocaleString()}</td>
                     
                         
@@ -109,6 +119,51 @@ document.addEventListener("DOMContentLoaded", () => {
             } catch (error) {
                 console.error("Error:", error);
                 alert("Ocurrió un error al buscar el pedido.");
+            }
+        } else {
+            alert("Por favor ingresa un ID válido.");
+        }
+    };
+
+     // Busca el cliente específico
+    window.buscarCliente = async (clienteId) => {
+        const cliente = clienteId;
+        if (cliente) {
+            const response = await fetch(`http://localhost:3000/api/clients/${cliente}`);
+            const { status, data } = await response.json();
+
+            if (status === "OK") {
+                document.getElementById("detalleId").innerText = data.id;
+                document.getElementById("detalleNombre").innerText = data.nombre;
+                document.getElementById("detalleEmail").innerText = data.email;
+                document.getElementById("detalleTelefono").innerText = data.telefono;
+                document.getElementById("detalleDireccion").innerText = data.direccion;
+                modalBuscarCliente.style.display = "flex";
+            } else {
+                alert("Cliente no encontrado.");
+            }
+        } else {
+            alert("Por favor ingresa un ID válido.");
+        }
+    };
+
+
+     // Buscar item específico
+     window.buscarItem = async (id) => {
+        if (id) {
+            const response = await fetch(`http://localhost:3000/api/items/${id}`);
+            const { status, data } = await response.json();
+
+            if (status === "OK") {
+                document.getElementById("detalleId").innerText = data.id;
+                document.getElementById("detalleCodigo").innerText = data.codigo;
+                document.getElementById("detalleDescripcion").innerText = data.descripcion;
+                document.getElementById("detallePrecio").innerText = data.precio;
+                document.getElementById("detalleStock").innerText = data.stock;
+                document.getElementById("detalleHabilitado").innerText = data.habilitado.toString();
+                modalBuscarItem.style.display = "flex";
+            } else {
+                alert("Item no encontrado.");
             }
         } else {
             alert("Por favor ingresa un ID válido.");

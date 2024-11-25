@@ -136,13 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td class="border px-4 py-2 text-center">${cliente.id}</td>
-                    <td class="border px-4 py-2 text-center">
-                        <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="buscarCliente(${cliente.id})">${cliente.id}</button>
-                    </td>
                     <td class="border px-4 py-2">${cliente.nombre}</td>
                     <td class="border px-4 py-2">${cliente.email}</td>
                     <td class="border px-4 py-2">${cliente.telefono}</td>
                     <td class="border px-4 py-2">${cliente.direccion}</td>
+                    <td class="border px-4 py-2 text-center">
+                        <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="buscarCliente(${cliente.id})">${cliente.id}</button>
+                    </td>
                     <td class="border px-4 py-2 text-center">
                         <button class="bg-green-500 text-white px-2 py-1 rounded-md" onclick="editarCliente(${cliente.id})">Editar</button>
                         <button class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="eliminarCliente(${cliente.id})">Eliminar</button>
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Busca el cliente específico
+    //Busca el cliente específico
     window.buscarCliente = async (clienteId) => {
         const cliente = clienteId;
         if (cliente) {

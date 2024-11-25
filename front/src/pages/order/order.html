@@ -30,6 +30,7 @@
                 <tr class="text-center">
                     <th class="border px-4 py-2">ID</th>
                     <th class="border px-4 py-2">ID Cliente</th>
+                    <th class="border px-4 py-2">ID Cliente</th>
                     <th class="border px-4 py-2">Items</th>
                     <th class="border px-4 py-2">Fecha</th>
                 </tr>
@@ -63,18 +64,36 @@
         </div>
     </div>
 
+
+
+
     <!-- Modal para mostrar Cliente específico -->
-    <div id="modalBuscarCliente" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-      <div class="modal-content bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold mb-4">Detalle del pedido</h2>
+        <div id="modalBuscarCliente" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div class="modal-content">
+                <h2 class="text-xl font-bold mb-4">Detalle del Cliente</h2>
+                <p><strong>ID:</strong> <span id="detalleId"></span></p>
+                <p><strong>Nombre:</strong> <span id="detalleNombre"></span></p>
+                <p><strong>Email:</strong> <span id="detalleEmail"></span></p>
+                <p><strong>Teléfono:</strong> <span id="detalleTelefono"></span></p>
+                <p><strong>Dirección:</strong> <span id="detalleDireccion"></span></p>
+                <button type="button" id="btnCloseBuscarModal" class="bg-gray-500 text-white px-4 py-2 rounded-md">Cerrar</button>
+            </div>
+        </div>
+       
+    <!-- Modal para mostrar Item específico -->
+    <div id="modalBuscarItem" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="modal-content">
+            <h2 class="text-xl font-bold mb-4">Detalle del Item</h2>
             <p><strong>ID:</strong> <span id="detalleId"></span></p>
-            <p><strong>IdCliente:</strong> <span id="detalleClienteId"></span></p>
-            <p><strong>Items y stock:</strong> <span id="detalleItems"></span></p>
-            <p><strong>Fecha:</strong> <span id="detalleFechaCreacion"></span></p>
-            <button type="button" id="btnCloseBuscarModal" class="bg-gray-500 text-white px-4 py-2 rounded-md">Cerrar</button>
-     </div>
+            <p><strong>Codigo:</strong> <span id="detalleCodigo"></span></p>
+            <p><strong>Descripcion:</strong> <span id="detalleDescripcion"></span></p>
+            <p><strong>Precio:</strong> <span id="detallePrecio"></span></p>
+            <p><strong>Strock:</strong> <span id="detalleStock"></span></p>
+            <p><strong>Habilitado:</strong> <span id="detalleHabilitado"></span></p>
+            <button type="button" id="btnCloseBuscarModalItem" class="bg-gray-500 text-white px-4 py-2 rounded-md">Cerrar</button>
+        </div>
     </div>
-    <iframe class="w-full h-[420px]" src="/front/src/shared/footer/footer.html" frameborder="0"></iframe>
+
 
 
 

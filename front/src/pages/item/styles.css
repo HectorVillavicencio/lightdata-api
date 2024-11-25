@@ -24,8 +24,3 @@ table thead {
     width: 300px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-iframe {
-    height: 80px !important; /* Sobrescribe la altura */
-    width: 100%;
-  }

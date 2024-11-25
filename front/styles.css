@@ -1,3 +1,4 @@
+
 /* Estilos Generales */
 * {
     margin: 0;
@@ -16,32 +17,6 @@ body {
     color: #2E8B57;
 }
 
-/* Barra de Navegación */
-nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    background-color: #2E8B57;
-    padding: 10px 0;
-    position: fixed;
-    top: 0;
-}
-
-nav button {
-    flex: 1;
-    padding: 15px 0;
-    font-size: 1.2em; /* Tamaño original */
-    font-weight: bold;
-    color: white;
-    background-color: #2E8B57;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-nav button:hover {
-    background-color: #66CDAA;
-}
 
 /* Línea Divisoria */
 .divider {
@@ -50,6 +25,7 @@ nav button:hover {
     background-color: #006400; /* Verde más fuerte */
     margin-top: 60px; /* Ajusta la posición según lo necesites */
 }
+
 
 /* Estilo de los Títulos */
 main {
@@ -81,6 +57,33 @@ h2 {
     h2 {
         font-size: 1.5em; /* Ajustado para pantallas más pequeñas */
     }
-
-
 }
+
+
+/* Barra de Navegación */
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #2E8B57;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+}
+
+nav button {
+    flex: 1;
+    padding: 15px 0;
+    font-size: 1.2em; /* Tamaño original */
+    font-weight: bold;
+    color: white;
+    background-color: #2E8B57;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+nav button:hover {
+    background-color: #66CDAA;
+}
+
